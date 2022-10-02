@@ -9,11 +9,11 @@ namespace DAL.DataContext
         {
         }
 
-        private DbSet<Book> Books { get; set; }
-        private DbSet<Author> Authors { get; set; }
-        private DbSet<BookAuthor> BookAuthors { get; set; }
-        private DbSet<Category> Categories { get; set; }
-        private DbSet<Publisher> Publishers { get; set; }
-        private DbSet<Review> Reviews { get; set; }
+        public DbSet<Book> Books { get; set; }
+        public DbSet<Author> Authors { get; set; }
+        public DbSet<BookAuthor> BookAuthors { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Publisher> Publishers { get; set; }
+        public DbSet<Review> Reviews { get; set; }
     }
 }

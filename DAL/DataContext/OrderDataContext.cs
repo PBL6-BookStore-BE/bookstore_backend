@@ -9,8 +9,8 @@ namespace DAL.DataContext
         {
         }
 
-        private DbSet<Order> Orders { get; set; }
-        private DbSet<OrderDetail> OrderDetails { get; set; }
-        private DbSet<Payment> Payments { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderDetail> OrderDetails { get; set; }
+        public DbSet<Payment> Payments { get; set; }
     }
 }

@@ -10,7 +10,7 @@ namespace DAL.DataContext
         {
         }
 
-        private DbSet<Cart> Carts { get; set; }
-        private DbSet<CartDetail> CartDetails { get; set; }
+        public DbSet<Cart> Carts { get; set; }
+        public DbSet<CartDetail> CartDetails { get; set; }
     }
 }

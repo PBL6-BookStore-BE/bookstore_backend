@@ -6,7 +6,6 @@
         public int Pages { get; set; }
         public DateTime PublicationDate { get; set; }
         public decimal Price { get; set; }
-
         public int IdCategory { get; set; }
         public int IdPublisher { get; set; }
     }
