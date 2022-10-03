@@ -19,5 +19,11 @@ namespace Service.Book.Controllers
         {
             return Ok(await _repo.GetAllBooks());
         }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetBook(int id)
+        {
+            return Ok(await _repo.GetBook(id));
+        }
     }
 }

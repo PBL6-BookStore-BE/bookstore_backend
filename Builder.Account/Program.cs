@@ -32,7 +32,8 @@ namespace Builder.Account
                 Console.WriteLine(db);
                 var builder = new DbContextOptionsBuilder<AccountDataContext>();
                 //Add package Microsoft.EntityFrameworkCore.SqlServer for UseSqlServer
-                builder.UseSqlServer("Server=localhost;Database=pbl6.account;Trusted_Connection=true;MultipleActiveResultSets=true;");
+                var serverVersion = new MySqlServerVersion(new Version(8, 0, 29));
+                builder.UseMySql("server=localhost;user=root;password=root;database=pbl6.account", serverVersion);
                 context = new AccountDataContext(builder.Options);
                 RecreateDatabase();
             }

@@ -15,8 +15,4 @@
     <ProjectReference Include="..\PBL6.BookStore.Models\PBL6.BookStore.Models.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Interfaces\" />
-  </ItemGroup>
-
 </Project>

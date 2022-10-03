@@ -32,7 +32,8 @@ namespace Builder.Order
                 Console.WriteLine(db);
                 var builder = new DbContextOptionsBuilder<OrderDataContext>();
                 //Add package Microsoft.EntityFrameworkCore.SqlServer for UseSqlServer
-                builder.UseSqlServer("Server=localhost;Database=pbl6.order;Trusted_Connection=true;MultipleActiveResultSets=true;");
+                var serverVersion = new MySqlServerVersion(new Version(8, 0, 29));
+                builder.UseMySql("server=localhost;user=root;password=root;database=pbl6.order", serverVersion);
                 context = new OrderDataContext(builder.Options);
                 RecreateDatabase();
             }

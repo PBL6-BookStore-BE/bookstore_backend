@@ -13,7 +13,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContext<BookDataContext>(x => x.UseSqlServer(connectionString));
+var serverVersion = new MySqlServerVersion(new Version(8, 0, 29));
+builder.Services.AddDbContext<BookDataContext>(x => x.UseMySql(connectionString, serverVersion));
 
 builder.Services.AddTransient<IBookRepository, BookRepository>();
 

@@ -1,12 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DAL.DataContext;
+using DAL.Interfaces;
 
 namespace DAL.Repositories
 {
-    internal class OrderRepository
+    public class OrderRepository : IOrderRepository
     {
+        private readonly OrderDataContext _context;
+
+        public OrderRepository(OrderDataContext context)
+        {
+            _context = context;
+        }
     }
 }

@@ -1,9 +1,11 @@
-﻿using PBL6.BookStore.Models.Entities.Book;
+﻿using PBL6.BookStore.Models.ViewModel;
 
 namespace DAL.Interfaces
 {
     public interface IBookRepository
     {
-        public Task<IEnumerable<Book>> GetAllBooks();
+        public Task<IEnumerable<GetAllBooksVM>> GetAllBooks();
+
+        public Task<GetBookVM> GetBook(int id);
     }
 }
