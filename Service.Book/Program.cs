@@ -16,6 +16,7 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 var serverVersion = new MySqlServerVersion(new Version(8, 0, 29));
 builder.Services.AddDbContext<BookDataContext>(x => x.UseMySql(connectionString, serverVersion));
 
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddTransient<IBookRepository, BookRepository>();
 
 var app = builder.Build();

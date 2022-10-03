@@ -3,21 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32922.545
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PBL6.BookStore.Models", "PBL6.BookStore.Models\PBL6.BookStore.Models.csproj", "{E85C9523-4D63-4F49-8E05-6D7F025E5712}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PBL6.BookStore.Models", "PBL6.BookStore.Models\PBL6.BookStore.Models.csproj", "{E85C9523-4D63-4F49-8E05-6D7F025E5712}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{1D7F83EA-8AB0-4627-A839-B59B9EBB4172}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL", "DAL\DAL.csproj", "{1D7F83EA-8AB0-4627-A839-B59B9EBB4172}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Builder.Book", "Builder.Book\Builder.Book.csproj", "{6BB48508-43E7-4E3A-B67D-10650E18C49D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Builder.Book", "Builder.Book\Builder.Book.csproj", "{6BB48508-43E7-4E3A-B67D-10650E18C49D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Builder.Order", "Builder.Order\Builder.Order.csproj", "{716CD6DA-FD91-404E-9ED3-95C82F8C8338}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Builder.Order", "Builder.Order\Builder.Order.csproj", "{716CD6DA-FD91-404E-9ED3-95C82F8C8338}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Builder.Account", "Builder.Account\Builder.Account.csproj", "{F39915C6-5FD0-4F12-B6EB-3F875C43ADCA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Builder.Account", "Builder.Account\Builder.Account.csproj", "{F39915C6-5FD0-4F12-B6EB-3F875C43ADCA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service.Book", "Service.Book\Service.Book.csproj", "{EB74EC4A-2915-4150-A9D3-5090ED32DDAC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceBook", "Service.Book\ServiceBook.csproj", "{EB74EC4A-2915-4150-A9D3-5090ED32DDAC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service.Order", "Service.Order\Service.Order.csproj", "{08249881-9955-4A65-B634-A223E28084FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceOrder", "Service.Order\ServiceOrder.csproj", "{08249881-9955-4A65-B634-A223E28084FF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service.Account", "Service.Account\Service.Account.csproj", "{ADF335D8-7B41-4C86-AF6A-995C260A73A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceAccount", "Service.Account\ServiceAccount.csproj", "{ADF335D8-7B41-4C86-AF6A-995C260A73A6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,22 +1,58 @@
-﻿using DAL.DataContext;
+﻿using AutoMapper;
+using DAL.DataContext;
 using DAL.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using PBL6.BookStore.Models.DTOs;
+using PBL6.BookStore.Models.Entities.Book;
 using PBL6.BookStore.Models.ViewModel;
 
 namespace DAL.Repositories
 {
     public class BookRepository : IBookRepository
     {
-        public readonly BookDataContext _context;
+        private readonly BookDataContext _context;
+        private readonly IMapper _mapper;
 
-        public BookRepository(BookDataContext context)
+        public BookRepository(BookDataContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
+        }
+
+        public async Task<int> CreateBook(CreateBookDTO model)
+        {
+            var bookDto = new CreateBookDTO
+            {
+                Name = model.Name,
+                Price = model.Price,
+                Pages = model.Pages,
+                PublicationDate = model.PublicationDate,
+                IdCategory = model.IdCategory,
+                IdPublisher = model.IdPublisher
+            };
+            var bookEntity = _mapper.Map<Book>(bookDto);
+            _context.Books.Add(bookEntity);
+            await _context.SaveChangesAsync();
+            return bookEntity.Id;
+        }
+
+        public async Task<int> DeleteBook(int id)
+        {
+            var book = _context.Books.FirstOrDefault(b => b.Id == id);
+            if (book == null)
+                return default;
+            else
+            {
+                book.IsDeleted = true;
+                await _context.SaveChangesAsync();
+                return book.Id;
+            }
         }
 
         public async Task<IEnumerable<GetAllBooksVM>> GetAllBooks()
         {
             var list = await (from b in _context.Books
+                              where b.IsDeleted == false
                               select new GetAllBooksVM
                               {
                                   Name = b.Name,
@@ -50,6 +86,25 @@ namespace DAL.Repositories
                                              }).ToList()
                               }).SingleOrDefaultAsync();
             return book;
+        }
+
+        public async Task<int> UpdateBook(UpdateBookDTO model)
+        {
+            var book = _context.Books.FirstOrDefault(b => b.Id == model.Id);
+            if (book == null)
+                return default;
+            else
+            {
+                book.Name = model.Name;
+                book.Price = model.Price;
+                book.Pages = model.Pages;
+                book.PublicationDate = model.PublicationDate;
+                book.IdCategory = model.IdCategory;
+                book.IdPublisher = model.IdPublisher;
+
+                await _context.SaveChangesAsync();
+                return book.Id;
+            }
         }
     }
 }

@@ -1,7 +1,8 @@
 ﻿using DAL.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using PBL6.BookStore.Models.DTOs;
 
-namespace Service.Book.Controllers
+namespace Service.Books.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -24,6 +25,24 @@ namespace Service.Book.Controllers
         public async Task<IActionResult> GetBook(int id)
         {
             return Ok(await _repo.GetBook(id));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateBook(CreateBookDTO model)
+        {
+            return Ok(await _repo.CreateBook(model));
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateBook([FromBody] UpdateBookDTO model)
+        {
+            return Ok(await _repo.UpdateBook(model));
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteBook(int id)
+        {
+            return Ok(await _repo.DeleteBook(id));
         }
     }
 }
