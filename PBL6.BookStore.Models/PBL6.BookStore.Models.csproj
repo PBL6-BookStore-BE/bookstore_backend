@@ -7,6 +7,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="DTOs\Account\**" />
+    <Compile Remove="DTOs\Order\**" />
+    <Compile Remove="ViewModel\Account\**" />
+    <Compile Remove="ViewModel\Order\**" />
+    <EmbeddedResource Remove="DTOs\Account\**" />
+    <EmbeddedResource Remove="DTOs\Order\**" />
+    <EmbeddedResource Remove="ViewModel\Account\**" />
+    <EmbeddedResource Remove="ViewModel\Order\**" />
+    <None Remove="DTOs\Account\**" />
+    <None Remove="DTOs\Order\**" />
+    <None Remove="ViewModel\Account\**" />
+    <None Remove="ViewModel\Order\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="12.0.0" />
   </ItemGroup>
 

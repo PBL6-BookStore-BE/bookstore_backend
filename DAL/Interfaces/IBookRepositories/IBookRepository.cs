@@ -1,7 +1,7 @@
-﻿using PBL6.BookStore.Models.DTOs;
-using PBL6.BookStore.Models.ViewModel;
+﻿using PBL6.BookStore.Models.DTOs.Book.BookDTO;
+using PBL6.BookStore.Models.ViewModel.Book.BookVM;
 
-namespace DAL.Interfaces
+namespace DAL.Interfaces.IBookRepositories
 {
     public interface IBookRepository
     {

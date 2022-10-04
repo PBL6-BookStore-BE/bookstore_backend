@@ -1,12 +1,14 @@
 ﻿using AutoMapper;
 using DAL.DataContext;
-using DAL.Interfaces;
+using DAL.Interfaces.IBookRepositories;
 using Microsoft.EntityFrameworkCore;
-using PBL6.BookStore.Models.DTOs;
+using PBL6.BookStore.Models.DTOs.Book.BookDTO;
 using PBL6.BookStore.Models.Entities.Book;
-using PBL6.BookStore.Models.ViewModel;
+using PBL6.BookStore.Models.ViewModel.Book;
+using PBL6.BookStore.Models.ViewModel.Book.AuthorVM;
+using PBL6.BookStore.Models.ViewModel.Book.BookVM;
 
-namespace DAL.Repositories
+namespace DAL.Repositories.BookRepositories
 {
     public class BookRepository : IBookRepository
     {
@@ -80,7 +82,7 @@ namespace DAL.Repositories
                                              join a in _context.Authors
                                              on ba.IdAuthor equals a.Id
                                              where b.Id == id
-                                             select new AuthorVM
+                                             select new GetAuthorVM
                                              {
                                                  Name = a.Name
                                              }).ToList()

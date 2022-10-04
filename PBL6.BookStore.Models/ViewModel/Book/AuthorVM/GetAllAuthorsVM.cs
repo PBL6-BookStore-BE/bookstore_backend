@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.Interfaces
+namespace PBL6.BookStore.Models.ViewModel.Book.AuthorVM
 {
-    public interface IOrderRepository
+    public class GetAllAuthorsVM
     {
+        public string Name { get; set; }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using DAL.DataContext;
-using DAL.Interfaces;
+using DAL.Interfaces.IOrderRepositories;
 
-namespace DAL.Repositories
+namespace DAL.Repositories.OrderRepositories
 {
     public class OrderRepository : IOrderRepository
     {

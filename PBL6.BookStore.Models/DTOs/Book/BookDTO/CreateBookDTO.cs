@@ -1,4 +1,4 @@
-﻿namespace PBL6.BookStore.Models.DTOs
+﻿namespace PBL6.BookStore.Models.DTOs.Book.BookDTO
 {
     public class CreateBookDTO
     {

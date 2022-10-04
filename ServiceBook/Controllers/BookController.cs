@@ -1,6 +1,6 @@
-﻿using DAL.Interfaces;
+﻿using DAL.Interfaces.IBookRepositories;
 using Microsoft.AspNetCore.Mvc;
-using PBL6.BookStore.Models.DTOs;
+using PBL6.BookStore.Models.DTOs.Book.BookDTO;
 
 namespace Service.Books.Controllers
 {

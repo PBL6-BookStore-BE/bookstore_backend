@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using PBL6.BookStore.Models.DTOs;
+using PBL6.BookStore.Models.DTOs.Book.BookDTO;
 using PBL6.BookStore.Models.Entities.Book;
 
 namespace DAL.Helper
@@ -9,6 +9,7 @@ namespace DAL.Helper
         public MappingProfiles()
         {
             CreateMap<CreateBookDTO, Book>();
+
         }
     }
 }

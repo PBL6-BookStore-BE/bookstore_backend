@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PBL6.BookStore.Models.ViewModel
+namespace PBL6.BookStore.Models.ViewModel.Book.BookVM
 {
     public class GetAllBooksVM
     {

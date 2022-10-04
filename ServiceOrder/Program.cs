@@ -1,6 +1,6 @@
 using DAL.DataContext;
-using DAL.Interfaces;
-using DAL.Repositories;
+using DAL.Interfaces.IOrderRepositories;
+using DAL.Repositories.OrderRepositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
