@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "LWMDtR4XuAH/MjeZGIK8rH3YahtUbbPWqIXa4dvPo/U=",
+  "Source": "MicroserviceOrder",
+  "BasePath": "_content/MicroserviceOrder",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
