@@ -1,0 +1,46 @@
+﻿using MicroserviceBook.DTOs.Author;
+using MicroserviceBook.Interfaces;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+
+namespace MicroserviceBook.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class AuthorController : ControllerBase
+    {
+        public readonly IAuthorRepository _repo;
+
+        public AuthorController(IAuthorRepository repo)
+        {
+            _repo = repo;
+        }
+        [HttpGet]
+        public async Task<IActionResult> GetAllAuthors()
+        {
+            return Ok(await _repo.GetAllAuthors());
+        }
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetAuthor(int id)
+        {
+            return Ok(await _repo.GetAuthor(id));
+        }
+        [HttpPost]
+        public async Task<IActionResult> CreateAuthor(CreateAuthorDTO model)
+        {
+            return Ok(await _repo.CreateAuthor(model));
+        }
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateAuthor([FromBody] UpdateAuthorDTO model)
+        {
+            return Ok(await _repo.UpdateAuthor(model));
+        }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteAuthor(int id)
+        {
+            return Ok(await _repo.DeleteAuthor(id));
+        }
+
+    }
+}
+

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MicroserviceBook.Migrations
 {
-    [DbContext(typeof(DataContext))]
+    [DbContext(typeof(BookDataContext))]
     [Migration("20221005055737_initDB")]
     partial class initDB
     {

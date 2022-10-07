@@ -1,11 +1,12 @@
-﻿using MicroserviceBook.Entities;
+﻿using MicroserviceBook.DTOs.Cart;
+using MicroserviceBook.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace MicroserviceBook.Data
 {
-    public class DataContext : DbContext
+    public class BookDataContext : DbContext
     {
-        public DataContext(DbContextOptions options) : base(options)
+        public BookDataContext(DbContextOptions options) : base(options)
         {
         }
 
@@ -15,5 +16,7 @@ namespace MicroserviceBook.Data
         public DbSet<Category> Categories { get; set; }
         public DbSet<Publisher> Publishers { get; set; }
         public DbSet<Review> Reviews { get; set; }
+        public DbSet<Cart> Carts { get; set; }
+        public DbSet<CartDetail>  CartDetails { get; set; }
     }
 }

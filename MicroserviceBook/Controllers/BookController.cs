@@ -1,5 +1,7 @@
-﻿using MicroserviceBook.Interfaces;
+﻿using MicroserviceBook.DTOs.Book;
+using MicroserviceBook.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using PBL6.BookStore.Models.DTOs.Book.BookDTO;
 
 namespace MicroserviceBook.Controllers
 {
@@ -18,6 +20,12 @@ namespace MicroserviceBook.Controllers
         public async Task<IActionResult> GetAllBooks()
         {
             return Ok(await _repo.GetAllBooks());
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateBook(BookWithAuthorsDTO model)
+        {
+            return Ok(await _repo.CreateBook(model));
         }
     }
 }

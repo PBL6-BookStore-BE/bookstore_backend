@@ -14,12 +14,13 @@ builder.Services.AddSwaggerGen();
 
 var serverVersion = new MySqlServerVersion(new Version(8, 0, 29));
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContext<DataContext>(
+builder.Services.AddDbContext<BookDataContext>(
             dbContextOptions => dbContextOptions
                 .UseMySql(connectionString, serverVersion)
         );
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddTransient<IBookRepository, BookRepository>();
+builder.Services.AddTransient<IAuthorRepository, AuthorRepository>();
 
 
 var app = builder.Build();
