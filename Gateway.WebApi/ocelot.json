@@ -1,6 +1,35 @@
 ﻿{
   "Routes": [
     {
+      "DownstreamPathTemplate": "/api/account/login",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 6001
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/login",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+
+
+    {
+      "DownstreamPathTemplate": "/api/account/bookt",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 6001
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/bookt",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+
+
+
+    {
       "DownstreamPathTemplate": "/api/book",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
@@ -10,21 +39,7 @@
         }
       ],
       "UpstreamPathTemplate": "/gateway/book",
-      "UpstreamHttpMethod": [ "GET", "POST" ]
-    },
-
-    {
-      "DownstreamPathTemplate": "/api/book/{id}",
-      "DownstreamScheme": "https",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 6002
-        }
-      ],
-      "UpstreamPathTemplate": "/gateway/book/{id}",
-      "UpstreamHttpMethod": [ "GET", "DELETE", "PUT" ]
+      "UpstreamHttpMethod": [ "GET" ]
     }
-
   ]
 }
