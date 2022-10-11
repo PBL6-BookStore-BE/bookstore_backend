@@ -1,8 +1,7 @@
-﻿using MicroserviceBook.Entities;
+﻿namespace MicroserviceBook.Entities
 
-namespace MicroserviceBook.DTOs.Cart
 {
-    public class CartDetail : BaseEntity
+    public class CartDetail: BaseEntity
     {
         public int Quantity { get; set; }
         public int IdCart { get; set; }
