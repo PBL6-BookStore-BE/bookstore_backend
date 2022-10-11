@@ -22,6 +22,7 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddTransient<IBookRepository, BookRepository>();
 builder.Services.AddTransient<IAuthorRepository, AuthorRepository>();
 builder.Services.AddTransient<ICategoryRepository, CategoryRepository>();
+builder.Services.AddTransient<IPublisherRepository, PublisherRepository>();
 
 
 var app = builder.Build();
