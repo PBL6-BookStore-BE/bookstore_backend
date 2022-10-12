@@ -2,5 +2,6 @@
 {
     public class GetPublisherVM
     {
+        public string Name { get; set; }
     }
 }
