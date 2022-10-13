@@ -4,8 +4,8 @@ using MicroserviceBook.DTOs.Book;
 using MicroserviceBook.Entities;
 using MicroserviceBook.Interfaces;
 using MicroserviceBook.ViewModels.BookVM;
+
 using Microsoft.EntityFrameworkCore;
-using PBL6.BookStore.Models.DTOs.Book.BookDTO;
 
 namespace MicroserviceBook.Respositories
 {
@@ -21,14 +21,11 @@ namespace MicroserviceBook.Respositories
         }
         public async Task<IEnumerable<GetAllBooksVM>> GetAllBooks()
         {
-            var list = await (from b in _context.Books
-                              where b.IsDeleted == false
-                              select new GetAllBooksVM
-                              {
-                                  Name = b.Name,
-                                  Price = b.Price
-                              }).ToListAsync();
-            return list.AsReadOnly();
+            var list = await _context.Books.Where(b => b.IsDeleted == false).ToListAsync();
+            var booksVM = _mapper.Map<IEnumerable<GetAllBooksVM>>(list);
+            return booksVM;
+
+    
         }
 
         public async Task<int> CreateBook(BookWithAuthorsDTO model)
