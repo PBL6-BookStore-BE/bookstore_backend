@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 
 using MicroserviceBook.Entities;
-using MicroserviceBook.ViewModels.CartVM;
+//using MicroserviceBook.ViewModels.CartVM;
 
 namespace MicroserviceBook.Helper
 {
@@ -10,7 +10,7 @@ namespace MicroserviceBook.Helper
         public MappingCarts()
         {
            //CreateMap<CreateCartDTO,Cart>();
-           CreateMap<Cart, GetCartVM>();
+           //CreateMap<Cart, GetCartVM>();
         }
     }
 }

@@ -2,7 +2,7 @@
 using MicroserviceBook.Data;
 using MicroserviceBook.Entities;
 using MicroserviceBook.Interfaces;
-using MicroserviceBook.ViewModels.CartVM;
+//using MicroserviceBook.ViewModels.CartVM;
 using Microsoft.EntityFrameworkCore;
 
 namespace MicroserviceBook.Respositories
@@ -43,15 +43,15 @@ namespace MicroserviceBook.Respositories
 
         }
 
-        public Task<GetCartVM> GetCartAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
+        //public Task<GetCartVM> GetCartAsync(int id)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public Task<GetCartVM> GetCartByIdUser(int idUser)
-        {
-            throw new NotImplementedException();
-        }
+        //public Task<GetCartVM> GetCartByIdUser(int idUser)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
 
         //public async Task<GetCartVM> GetCartByIdUser(int idUser)
