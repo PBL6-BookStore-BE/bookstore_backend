@@ -6,7 +6,7 @@ namespace MicroserviceBook.Interfaces
 {
     public interface IBookRepository
     {
-        public Task<IEnumerable<GetAllBooksVM>> GetAllBooks();
+        public Task<IEnumerable<GetBookVM>> GetAllBooks();
         public Task<int> CreateBook(BookWithAuthorsDTO model);
     }
 }

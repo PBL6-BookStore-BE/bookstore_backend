@@ -19,12 +19,29 @@ namespace MicroserviceBook.Respositories
             _context = context;
             _mapper = mapper;
         }
-        public async Task<IEnumerable<GetAllBooksVM>> GetAllBooks()
+        public async Task<IEnumerable<GetBookVM>> GetAllBooks()
         {
             var list = await _context.Books.Where(b => b.IsDeleted == false).ToListAsync();
-            var booksVM = _mapper.Map<IEnumerable<GetAllBooksVM>>(list);
-            return booksVM;
+            var result = new List<GetBookVM>();
+            
+              foreach (var i in list)
+            {
+                var bookVM = new GetBookVM();
+                bookVM.PublicationDate = i.PublicationDate;
+                bookVM.Name = i.Name;
+                bookVM.Pages = i.Pages;
+                bookVM.Rating = i.Rating;
+                bookVM.Price = i.Price;
+                bookVM.CategoryName = _context.Categories.Where(c => c.Id == i.IdCategory).Select(c => c.Name).Single();
+                bookVM.PublisherName = _context.Publishers.Where(p => p.Id == i.IdPublisher).Select(p => p.Name).Single();
+                bookVM.Authors =  
+                    (from ba in _context.BookAuthors join a in _context.Authors on ba.IdAuthor equals a.Id where ba.IdBook == i.Id
+                     select a.Name).ToList();
+                result.Add(bookVM);
+            }
+                
 
+            return result;
     
         }
 
