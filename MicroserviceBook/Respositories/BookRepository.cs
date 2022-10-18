@@ -6,6 +6,7 @@ using MicroserviceBook.Interfaces;
 using MicroserviceBook.ViewModels.BookVM;
 
 using Microsoft.EntityFrameworkCore;
+using PBL6.BookStore.Models.DTOs.Book.BookDTO;
 
 namespace MicroserviceBook.Respositories
 {
@@ -91,5 +92,74 @@ namespace MicroserviceBook.Respositories
             //await _context.SaveChangesAsync();
             //return bookEntity.Id;
         }
+
+        public async Task<GetBookVM> GetBook(int id)
+        {
+            var book = await (from b in _context.Books join
+                                   c in _context.Categories
+                                   on b.IdCategory equals c.Id
+                              join p in _context.Publishers
+                              on b.IdPublisher equals p.Id
+                              where b.Id == id
+                              select new GetBookVM
+                              {
+                                  Name = b.Name,
+                                  Pages = b.Pages,
+                                  Rating = b.Rating,
+                                  Price = b.Price,
+                                  CategoryName = c.Name,
+                                  PublicationDate = b.PublicationDate,
+                                  PublisherName = p.Name,
+                                  Authors = (from ba in _context.BookAuthors
+                                             join a in _context.Authors
+                                             on ba.IdAuthor equals a.Id
+                                             where ba.IdBook == id
+                                             select a.Name).ToList()
+                              }
+                              ).SingleOrDefaultAsync();
+            return book;                                        
+        }
+
+        public async Task<int> UpdateBook(UpdateBookDTO model)
+        {
+            var book = await _context.Books.Where(b => b.Id == model.Id).SingleOrDefaultAsync();
+            if (book == null)
+            {
+                return 0;
+            }
+            else
+            {
+                book.Name = model.Name;
+                book.Pages = model.Pages;
+                book.Price = model.Price;
+                book.PublicationDate = model.PublicationDate;
+                book.IdCategory = model.IdCategory;
+                book.IdPublisher  = model.IdPublisher;
+                await _context.SaveChangesAsync();
+                return book.Id;
+            }
+            
+        }
+
+        public async Task<int> DeleteBook(int id)
+        {
+            var book = await _context.Books.Where(b => b.Id == id).SingleOrDefaultAsync();
+
+            if (book == null)
+            {
+                return default;
+            }
+            else
+            {
+                book.IsDeleted = true;
+                book.DeletedDate = DateTime.Now;
+
+               await _context.SaveChangesAsync();
+
+                return book.Id;
+            }   
+        }
+
+        
     }
 }
