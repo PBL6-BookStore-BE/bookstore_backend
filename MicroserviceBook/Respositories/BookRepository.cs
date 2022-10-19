@@ -1,11 +1,13 @@
 ﻿using AutoMapper;
+using CloudinaryDotNet;
+using CloudinaryDotNet.Actions;
 using MicroserviceBook.Data;
 using MicroserviceBook.DTOs.Book;
 using MicroserviceBook.Entities;
 using MicroserviceBook.Interfaces;
 using MicroserviceBook.ViewModels.BookVM;
-
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting.Internal;
 using PBL6.BookStore.Models.DTOs.Book.BookDTO;
 
 namespace MicroserviceBook.Respositories
@@ -19,13 +21,14 @@ namespace MicroserviceBook.Respositories
         {
             _context = context;
             _mapper = mapper;
+
         }
         public async Task<IEnumerable<GetBookVM>> GetAllBooks()
         {
             var list = await _context.Books.Where(b => b.IsDeleted == false).ToListAsync();
             var result = new List<GetBookVM>();
-            
-              foreach (var i in list)
+
+            foreach (var i in list)
             {
                 var bookVM = new GetBookVM();
                 bookVM.PublicationDate = i.PublicationDate;
@@ -33,17 +36,20 @@ namespace MicroserviceBook.Respositories
                 bookVM.Pages = i.Pages;
                 bookVM.Rating = i.Rating;
                 bookVM.Price = i.Price;
+                bookVM.UrlImage = i.UrlImage;
                 bookVM.CategoryName = _context.Categories.Where(c => c.Id == i.IdCategory).Select(c => c.Name).Single();
                 bookVM.PublisherName = _context.Publishers.Where(p => p.Id == i.IdPublisher).Select(p => p.Name).Single();
-                bookVM.Authors =  
-                    (from ba in _context.BookAuthors join a in _context.Authors on ba.IdAuthor equals a.Id where ba.IdBook == i.Id
+                bookVM.Authors =
+                    (from ba in _context.BookAuthors
+                     join a in _context.Authors on ba.IdAuthor equals a.Id
+                     where ba.IdBook == i.Id
                      select a.Name).ToList();
                 result.Add(bookVM);
             }
-                
+
 
             return result;
-    
+
         }
 
         public async Task<int> CreateBook(BookWithAuthorsDTO model)
@@ -52,7 +58,18 @@ namespace MicroserviceBook.Respositories
             try
             {
 
-                var book = _mapper.Map<Book>(model);
+                var book = new Book()
+                {
+                    Name = model.Name,
+                    Pages = model.Pages,
+                    Rating = 0,
+                    Price = model.Price,
+                    PublicationDate = model.PublicationDate,
+                    IdCategory = model.IdCategory,
+                    IdPublisher = model.IdPublisher,
+                    UrlImage = UploadFile(model.list_img)
+
+            };
                 _context.Books.Add(book);
                 await _context.SaveChangesAsync();
 
@@ -64,7 +81,7 @@ namespace MicroserviceBook.Respositories
                         IdAuthor = id
                     };
                     _context.BookAuthors.Add(_book_author);
-                await  _context.SaveChangesAsync();
+                    await _context.SaveChangesAsync();
                 }
                 await dbContextTransaction.CommitAsync();
                 await dbContextTransaction.DisposeAsync();
@@ -78,24 +95,12 @@ namespace MicroserviceBook.Respositories
                 await dbContextTransaction.DisposeAsync();
                 throw;
             }
-            //var bookDto = new CreateBookDTO
-            //{
-            //    Name = model.Name,
-            //    Price = model.Price,
-            //    Pages = model.Pages,
-            //    PublicationDate = model.PublicationDate,
-            //    IdCategory = model.IdCategory,
-            //    IdPublisher = model.IdPublisher
-            //};
-            //var bookEntity = _mapper.Map<Book>(bookDto);
-            //_context.Books.Add(bookEntity);
-            //await _context.SaveChangesAsync();
-            //return bookEntity.Id;
         }
 
         public async Task<GetBookVM> GetBook(int id)
         {
-            var book = await (from b in _context.Books join
+            var book = await (from b in _context.Books
+                              join
                                    c in _context.Categories
                                    on b.IdCategory equals c.Id
                               join p in _context.Publishers
@@ -107,6 +112,7 @@ namespace MicroserviceBook.Respositories
                                   Pages = b.Pages,
                                   Rating = b.Rating,
                                   Price = b.Price,
+                                  UrlImage = b.UrlImage,
                                   CategoryName = c.Name,
                                   PublicationDate = b.PublicationDate,
                                   PublisherName = p.Name,
@@ -117,7 +123,7 @@ namespace MicroserviceBook.Respositories
                                              select a.Name).ToList()
                               }
                               ).SingleOrDefaultAsync();
-            return book;                                        
+            return book;
         }
 
         public async Task<int> UpdateBook(UpdateBookDTO model)
@@ -134,11 +140,11 @@ namespace MicroserviceBook.Respositories
                 book.Price = model.Price;
                 book.PublicationDate = model.PublicationDate;
                 book.IdCategory = model.IdCategory;
-                book.IdPublisher  = model.IdPublisher;
+                book.IdPublisher = model.IdPublisher;
                 await _context.SaveChangesAsync();
                 return book.Id;
             }
-            
+
         }
 
         public async Task<int> DeleteBook(int id)
@@ -154,12 +160,36 @@ namespace MicroserviceBook.Respositories
                 book.IsDeleted = true;
                 book.DeletedDate = DateTime.Now;
 
-               await _context.SaveChangesAsync();
+                await _context.SaveChangesAsync();
 
                 return book.Id;
-            }   
+            }
         }
 
-        
+        public string UploadFile(List<IFormFile> list_img)
+        {
+            Account account = new Account(
+                    "dgs9vyh4n",
+                    "759658434427383",
+                    "oobrP1pOzKOb9q7E9vB_jBQqQHY");
+
+            Cloudinary cloudinary = new Cloudinary(account);
+            cloudinary.Api.Secure = true;
+
+            var guiID = Guid.NewGuid();
+            string rootFolder = "book/" + guiID + "/";
+            string temp = "";
+            foreach (var img in list_img)
+            {
+                temp = rootFolder+ Path.GetFileNameWithoutExtension(img.FileName);
+                var uploadParams = new ImageUploadParams()
+                {
+                    File = new FileDescription(img.FileName, img.OpenReadStream()),
+                    PublicId = temp
+                };
+                var uploadResult = cloudinary.Upload(uploadParams);
+            }
+            return rootFolder + "*";
+        }
     }
 }

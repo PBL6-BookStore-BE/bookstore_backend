@@ -10,6 +10,6 @@ namespace MicroserviceBook.Interfaces
         public Task<int> CreatePublisher(CreatePublisherDTO model);
         public Task<int> UpdatePublisher (UpdatePublisherDTO model);    
 
-        public Task<int>   DeletePublisher(int id);
+        public Task<int> DeletePublisher(int id);
     }
 }

@@ -8,9 +8,11 @@ namespace MicroserviceBook.Interfaces
     {
         public Task<IEnumerable<GetBookVM>> GetAllBooks();
         public Task<int> CreateBook(BookWithAuthorsDTO model);
-        public Task<GetBookVM> GetBook (int id);
+        public Task<GetBookVM> GetBook(int id);
         public Task<int> UpdateBook(UpdateBookDTO model);
         public Task<int> DeleteBook(int id);
+
+        public string UploadFile(List<IFormFile> list_img);
 
     }
 }
