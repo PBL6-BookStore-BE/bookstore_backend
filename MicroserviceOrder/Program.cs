@@ -19,7 +19,7 @@ builder.Services.AddDbContext<OrderDataContext>(
         );
 
 
-builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+//builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 //builder.Services.AddTransient<IBookRepository, BookRepository>();
 //builder.Services.AddTransient<IAuthorRepository, AuthorRepository>();
 var app = builder.Build();

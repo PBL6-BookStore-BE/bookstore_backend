@@ -12,5 +12,7 @@ namespace MicroserviceBook.ViewModels.BookVM
         public string PublisherName { get; set; }
         public DateTime PublicationDate { get; set; }
         public IEnumerable<string> Authors { get; set; }
+        public string UrlImage { get; set; }
     }
 }
+
