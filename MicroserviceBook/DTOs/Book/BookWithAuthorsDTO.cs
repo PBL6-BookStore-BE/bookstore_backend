@@ -8,6 +8,9 @@
         public DateTime PublicationDate { get; set; }
         public int IdCategory { get; set; }
         public int IdPublisher { get; set; }
-        public IEnumerable<int> IdAuthors { get; set; }
+        public IEnumerable<int> IdAuthors { get; set; } 
+        public List<IFormFile> list_img { get; set; }
+        
     }
 }
+

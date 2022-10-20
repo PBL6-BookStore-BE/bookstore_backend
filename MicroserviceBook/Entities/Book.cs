@@ -9,5 +9,6 @@
         public decimal Price { get; set; }
         public int IdCategory { get; set; }
         public int IdPublisher { get; set; }
+        public string UrlImage { get; set; }
     }
 }
