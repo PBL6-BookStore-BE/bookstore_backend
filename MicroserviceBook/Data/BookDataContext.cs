@@ -1,5 +1,4 @@
-﻿using MicroserviceBook.DTOs.Cart;
-using MicroserviceBook.Entities;
+﻿using MicroserviceBook.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace MicroserviceBook.Data
