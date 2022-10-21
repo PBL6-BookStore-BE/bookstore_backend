@@ -40,6 +40,33 @@
       ],
       "UpstreamPathTemplate": "/gateway/book",
       "UpstreamHttpMethod": [ "GET" ]
+    },
+
+    //Gateway cho review
+    {
+      "DownstreamPathTemplate": "/api/review",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 6002
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/review",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/account/review",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 6001
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/review/create",
+      "UpstreamHttpMethod": [ "POST" ]
     }
+
   ]
 }

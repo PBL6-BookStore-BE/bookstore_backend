@@ -30,6 +30,7 @@ builder.Services.AddTransient<IBookRepository, BookRepository>();
 builder.Services.AddTransient<IAuthorRepository, AuthorRepository>();
 builder.Services.AddTransient<ICategoryRepository, CategoryRepository>();
 builder.Services.AddTransient<IPublisherRepository, PublisherRepository>();
+builder.Services.AddTransient<IReviewRepository, ReviewRepository>();
 
 
 var app = builder.Build();

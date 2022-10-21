@@ -14,5 +14,10 @@ namespace MicroserviceBook.Interfaces
 
         public string UploadFile(List<IFormFile> list_img);
 
+        public IEnumerable<string> GetUrls(string url_folder);
+
+
+        public Task<IEnumerable<GetBookVM>> Top10ByRating(); 
+
     }
 }

@@ -3,6 +3,6 @@
 {
     public class Cart: BaseEntity
     {
-        public int IdUser { get; set; }
+        public string IdUser { get; set; }
     }
 }

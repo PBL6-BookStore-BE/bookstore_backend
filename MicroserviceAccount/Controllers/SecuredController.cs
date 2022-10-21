@@ -16,12 +16,12 @@ namespace MicroserviceAccount.Controllers
             _repo = repo;
         }
 
-        [Authorize(Roles = "Administrator", AuthenticationSchemes = "Bearer")]
-        [HttpPost]
-        public async Task<IActionResult> PostSecuredData()
-        {
-            return Ok("This Secured Data is available only for Administrator");
-        }
+        //[Authorize(Roles = "Administrator", AuthenticationSchemes = "Bearer")]
+        //[HttpPost]
+        //public async Task<IActionResult> PostSecuredData()
+        //{
+        //    return Ok("This Secured Data is available only for Administrator");
+        //}
 
         [HttpPost("AddRole")]
         [Authorize(Roles = "Administrator", AuthenticationSchemes = "Bearer")]
