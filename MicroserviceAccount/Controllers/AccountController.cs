@@ -20,45 +20,37 @@ namespace MicroserviceAccount.Controllers
             _currentUserService = currentUserService;
         }
 
-        [HttpPost("Register")]
+        [HttpPost("register")]
         public async Task<ActionResult> RegisterAsync(RegisterDTO model)
         {
             var result = await _repo.RegisterAsync(model);
             return Ok(result);
         }
 
-        [HttpPost("Login")]
+        [HttpPost("login")]
         public async Task<IActionResult> GetTokenAsync(LoginDTO model)
         {
             var result = await _repo.LoginAsync(model);
             return Ok(result);
         }
 
-        [Authorize(AuthenticationSchemes = "Bearer")]
-        [HttpGet]
-        public async Task<IActionResult> GetSecuredData()
-        {
-            return Ok("This Secured Data is available only for Authenticated Users.");
-        }
-
-        [HttpPost("ForgetPassword")]
+        [HttpPost("forget-password")]
         public async Task<IActionResult> ForgetPassword(ForgetPasswordDTO model)
         {
             var result = await _repo.ForgetPassword(model);
             return Ok(result);
         }
 
-
-        [HttpPost("ResetPassword")]
-        public async Task<IActionResult> ResetPassword( ResetPasswordDTO model)
+        [HttpPost("reset-password")]
+        public async Task<IActionResult> ResetPassword(ResetPasswordDTO model)
         {
-            var email = "dsd";
             var result = await _repo.ResetPassword(model);
             return Ok(result);
         }
 
+        [HttpPost("change-password")]
+        [Authorize(Roles = "Administrator,Customer", AuthenticationSchemes = "Bearer")]
         [Authorize(AuthenticationSchemes = "Bearer")]
-        [HttpPost("ChangePassword")]
         public async Task<IActionResult> ChangePassword(ChangePasswordDTO model)
         {
             var email = _currentUserService.Email;
@@ -75,6 +67,22 @@ namespace MicroserviceAccount.Controllers
             RestResponse response = await client.ExecuteAsync(request);
             var Output = response.Content;
             return Ok(Output);
+        }
+
+        [HttpPost("administrator/user")]
+        [Authorize(Roles = "Administrator", AuthenticationSchemes = "Bearer")]
+        public async Task<IActionResult> CreateUser(CreateUserDTO model)
+        {
+            var result = await _repo.CreateUser(model);
+            return Ok(result);
+        }
+
+        [HttpGet("administrator/user")]
+        [Authorize(Roles = "Administrator", AuthenticationSchemes = "Bearer")]
+        public async Task<IActionResult> GetAllCustomers()
+        {
+            var result = await _repo.GetAllUsers();
+            return Ok(result);
         }
     }
 }

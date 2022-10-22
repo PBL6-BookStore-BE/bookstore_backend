@@ -3,6 +3,7 @@
     public class AuthenticationVM
     {
         public string Message { get; set; }
+        public bool IsSuccess { get; set; }
         public bool IsAuthenticated { get; set; }
         public string UserName { get; set; }
         public string Email { get; set; }
