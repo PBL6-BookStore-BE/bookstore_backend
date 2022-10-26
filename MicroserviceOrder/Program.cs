@@ -1,4 +1,6 @@
 using MicroserviceOrder.Data;
+using MicroserviceOrder.Interfaces;
+using MicroserviceOrder.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,6 +8,13 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
+
+builder.Services.AddCors(o =>
+                o.AddPolicy("CorsPolicy", builder => builder
+                    .WithOrigins("http://localhost:3000")
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()));
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -17,11 +26,10 @@ builder.Services.AddDbContext<OrderDataContext>(
             dbContextOptions => dbContextOptions
                 .UseMySql(connectionString, serverVersion)
         );
+builder.Services.AddTransient<IOrderRepository, OrderRepository>();
+builder.Services.AddTransient<IOrderDetailRepository, OrderDetailRepository>();
 
-
-//builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-//builder.Services.AddTransient<IBookRepository, BookRepository>();
-//builder.Services.AddTransient<IAuthorRepository, AuthorRepository>();
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

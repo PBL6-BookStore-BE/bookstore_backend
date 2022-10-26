@@ -11,7 +11,6 @@ namespace MicroserviceBook.Controllers
     {
         public readonly IPublisherRepository _repo;
 
-        public readonly IPublisherRepository _repo;
         public PublisherController(IPublisherRepository repo)
         {
             _repo = repo;

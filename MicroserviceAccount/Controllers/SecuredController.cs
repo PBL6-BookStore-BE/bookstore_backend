@@ -16,19 +16,5 @@ namespace MicroserviceAccount.Controllers
             _repo = repo;
         }
 
-        //[Authorize(Roles = "Administrator", AuthenticationSchemes = "Bearer")]
-        //[HttpPost]
-        //public async Task<IActionResult> PostSecuredData()
-        //{
-        //    return Ok("This Secured Data is available only for Administrator");
-        //}
-
-        [HttpPost("AddRole")]
-        [Authorize(Roles = "Administrator", AuthenticationSchemes = "Bearer")]
-        public async Task<IActionResult> AddRoleAsync(AddRoleDTO model)
-        {
-            var result = await _repo.AddRoleAsync(model);
-            return Ok(result);
-        }
     }
 }
