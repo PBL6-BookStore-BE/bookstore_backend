@@ -9,22 +9,26 @@ namespace MicroserviceBook.Controllers
     [ApiController]
     public class PublisherController : ControllerBase
     {
+        public readonly IPublisherRepository _repo;
 
         public readonly IPublisherRepository _repo;
         public PublisherController(IPublisherRepository repo)
         {
             _repo = repo;
+
         }
         [HttpGet]
-        public async Task<IActionResult> GetAllPublishers()
+        public async Task<IActionResult> GetAllPublisher()
         {
             return Ok(await _repo.GetAllPublisherAsync());
         }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetPublisher(int id)
         {
             return Ok(await _repo.GetPublisherAsync(id));
         }
+
         [HttpPost]
         public async Task<IActionResult> CreatePublisher(CreatePublisherDTO model)
         {
@@ -32,7 +36,7 @@ namespace MicroserviceBook.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdatePublisher([FromBody] UpdatePublisherDTO model)
+        public async Task<IActionResult> UpdatePublisher(UpdatePublisherDTO model)
         {
             return Ok(await _repo.UpdatePublisher(model));
         }

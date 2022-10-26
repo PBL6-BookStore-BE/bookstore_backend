@@ -1,4 +1,9 @@
 ﻿using AutoMapper;
+using MicroserviceBook.DTOs.Publisher;
+using MicroserviceBook.Entities;
+using MicroserviceBook.Interfaces;
+using MicroserviceBook.ViewModels.PublisherVM;
+using Microsoft.EntityFrameworkCore;
 using MicroserviceBook.Data;
 using MicroserviceBook.DTOs.Publisher;
 using MicroserviceBook.Entities;
@@ -6,7 +11,8 @@ using MicroserviceBook.Interfaces;
 using MicroserviceBook.ViewModels.PublisherVM;
 using Microsoft.EntityFrameworkCore;
 
-
+namespace MicroserviceBook.Respositories
+{
     public class PublisherRepository : IPublisherRepository
     {
         private readonly BookDataContext _context;

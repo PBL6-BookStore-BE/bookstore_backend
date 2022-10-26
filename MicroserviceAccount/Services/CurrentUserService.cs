@@ -12,6 +12,7 @@ namespace MicroserviceAccount.Services
         }
 
         private string _email;
+        private string _id;
 
         public string Email
         {
@@ -19,6 +20,16 @@ namespace MicroserviceAccount.Services
             {
                 _email = _httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.Email) ?? "";
                 return _email;
+            }
+        }
+
+        public string Id
+        {
+            get
+            {
+                _id = _httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.Sid) ?? "";
+                return _id;
+
             }
         }
     }
