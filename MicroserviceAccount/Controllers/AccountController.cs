@@ -1,4 +1,5 @@
 ﻿using MicroserviceAccount.DTOs;
+using MicroserviceAccount.DTOs.Review;
 using MicroserviceAccount.Interfaces;
 using MicroserviceAccount.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -68,6 +69,29 @@ namespace MicroserviceAccount.Controllers
             var Output = response.Content;
             return Ok(Output);
         }
+        [Authorize(AuthenticationSchemes = "Bearer")]
+        [HttpPost("review")]
+        public async Task<IActionResult> CreateReview([FromForm] AddReviewDTO model)
+        {
+            var url = "https://localhost:7075/gateway/review";
+            var client = new RestClient(url);
+            var request = new RestRequest(url, Method.Post);
+            request.RequestFormat = DataFormat.Json;
+            var review = new ReviewDTO
+            {
+                IdBook = model.IdBook,
+                Rating = model.Rating,
+                Comment = model.Comment,
+                IdUser = _currentUserService.Id
+            };
+            request.AddBody(
+                review
+                );
+            RestResponse response = await client.ExecuteAsync(request);
+            var Output = response.Content;
+            return Ok(Output);
+        }
+
 
         [HttpPost("administrator/user")]
         [Authorize(Roles = "Administrator", AuthenticationSchemes = "Bearer")]

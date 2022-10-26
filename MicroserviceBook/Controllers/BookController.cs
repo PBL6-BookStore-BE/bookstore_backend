@@ -35,6 +35,13 @@ namespace MicroserviceBook.Controllers
         }
 
 
+        [HttpGet("Top10Rating")]
+        public async Task<IActionResult> GetTop10ByRating()
+        {
+            return Ok(await _repo.Top10ByRating());
+        }
+
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteBook(int id)
         {

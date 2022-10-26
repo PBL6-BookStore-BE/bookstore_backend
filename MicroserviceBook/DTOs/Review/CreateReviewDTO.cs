@@ -1,10 +1,11 @@
-﻿namespace MicroserviceBook.Entities
+﻿namespace MicroserviceBook.DTOs.Review
 {
-    public class Review : BaseEntity
+    public class CreateReviewDTO
     {
         public int Rating { get; set; }
         public string Comment { get; set; }
         public int IdBook { get; set; }
         public string IdUser { get; set; }
+
     }
 }
