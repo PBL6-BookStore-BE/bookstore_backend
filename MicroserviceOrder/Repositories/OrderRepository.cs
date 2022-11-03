@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using MicroserviceAccount.Services;
 using MicroserviceBook.Entities;
 using MicroserviceOrder.Data;
 using MicroserviceOrder.DTOs.Order;
@@ -15,24 +16,32 @@ namespace MicroserviceOrder.Repositories
     {
         private readonly OrderDataContext _context;
         private readonly IOrderDetailRepository _orderDetailRepository;
+        private readonly IPaymentRepository _paymentRepository;
         private readonly IMapper _mapper;
+        private readonly ICurrentUserService _currentUserService;
 
-        public OrderRepository(OrderDataContext context, IMapper mapper, IOrderDetailRepository orderDetailRepository)
+        public OrderRepository(OrderDataContext context, IMapper mapper, IOrderDetailRepository orderDetailRepository, ICurrentUserService currentUserService, IPaymentRepository paymentRepository)
         {
             _context = context;
             _mapper = mapper;
             _orderDetailRepository = orderDetailRepository;
+            _currentUserService = currentUserService;
+            _paymentRepository = paymentRepository;
         }
 
         public async Task<int> CreateOrder(CreateOrderDTO model)
         {
+            var userId = _currentUserService.Id.ToString();
             var OrderEntity = _mapper.Map<Order>(model);
+            OrderEntity.IdUser = userId;
             _context.Orders.Add(OrderEntity);
-            
+            await _context.SaveChangesAsync();
             if (model.OrderDetails!=null)
             {
                 foreach (var i in model.OrderDetails)
                 {
+                    var orderDetail = _mapper.Map<OrderDetail>(i);
+                    orderDetail.IdOrder = OrderEntity.Id;
                     _context.OrderDetails.Add(_mapper.Map<OrderDetail>(i));
                 }
             }
@@ -49,8 +58,17 @@ namespace MicroserviceOrder.Repositories
             }
             else
             {
+                var orderdetails = await _orderDetailRepository.GetOrderDetailByOrderIdAsync(OrderEntity.Id);
+                if (orderdetails != null)
+                {
+                    foreach (var c in orderdetails)
+                    {
+                        await _orderDetailRepository.DeleteOrderDetail(c.Id);
+                    }
+                }
                 OrderEntity.IsDeleted = true;
                 OrderEntity.DeletedDate = DateTime.Now;
+                
                 await _context.SaveChangesAsync();
                 return OrderEntity.Id;
             }
@@ -58,7 +76,7 @@ namespace MicroserviceOrder.Repositories
 
         public async Task<IEnumerable<GetAllOrdersVM>> GetAllOrdersAsync()
         {
-            var orders = await _context.Orders.Where(b => b.IsDeleted == false).ToListAsync();
+            var orders = await _context.Orders.Where(b => b.IsDeleted == false).Include(b => b.Payment).ToListAsync();
             var results = orders.Select(i => _mapper.Map<GetAllOrdersVM>(i));
             return results;
         }

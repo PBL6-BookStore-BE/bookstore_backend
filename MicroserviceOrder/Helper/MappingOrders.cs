@@ -11,8 +11,8 @@ namespace MicroserviceOrder.Helper
         {
             CreateMap<CreateOrderDTO, Order>();
             CreateMap<UpdateOrderDTO, Order>();
-            CreateMap<Order, GetAllOrdersVM>();
-            CreateMap<Order, GetOrderVM>();
+            CreateMap<Order, GetAllOrdersVM>().ForMember(c => c.Payment, d => d.MapFrom(e => e.Payment.Name));
+            CreateMap<Order, GetOrderVM>().ForMember(c => c.Payment, d => d.MapFrom(e => e.Payment.Name));
         }
     }
 }
