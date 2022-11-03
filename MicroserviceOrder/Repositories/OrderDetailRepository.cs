@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using MicroserviceAccount.Services;
 using MicroserviceBook.ViewModels.CategoryVM;
 using MicroserviceOrder.Data;
 using MicroserviceOrder.DTOs.OrderDetail;
@@ -52,14 +53,21 @@ namespace MicroserviceOrder.Repositories
 
         public async Task<GetOrderDetailVM> GetOrderDetail(int id)
         {
-            var orderdetails = await _context.OrderDetails.Where(i => i.Id == id).FirstOrDefaultAsync();
-            var result = _mapper.Map<GetOrderDetailVM>(orderdetails);
+            var orderdetail = await _context.OrderDetails.Where(i => i.Id == id).FirstOrDefaultAsync();
+            if (orderdetail == null)
+                return null;
+            var result = _mapper.Map<GetOrderDetailVM>(orderdetail);
             return result;
         }
 
         public async Task<IEnumerable<GetOrderDetailVM>> GetOrderDetailByOrderIdAsync(int id)
         {
             var orderdetails = await _context.OrderDetails.Where(i => i.IdOrder == id).ToListAsync();
+            if (orderdetails == null)
+            {
+                return null;
+            }
+            
             var result = orderdetails.Select(i => _mapper.Map<GetOrderDetailVM>(i));
             return result;
         }

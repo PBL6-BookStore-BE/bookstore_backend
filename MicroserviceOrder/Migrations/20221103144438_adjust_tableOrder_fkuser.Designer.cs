@@ -3,6 +3,7 @@ using System;
 using MicroserviceOrder.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MicroserviceOrder.Migrations
 {
     [DbContext(typeof(OrderDataContext))]
-    partial class OrderDataContextModelSnapshot : ModelSnapshot
+    [Migration("20221103144438_adjust_tableOrder_fkuser")]
+    partial class adjust_tableOrder_fkuser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
