@@ -15,5 +15,6 @@ namespace PBL6.BookStore.Models.DTOs.Book.BookDTO
         public DateTime PublicationDate { get; set; }
         public int IdCategory { get; set; }
         public int IdPublisher { get; set; }
+        public string Description { get; set; }
     }
 }

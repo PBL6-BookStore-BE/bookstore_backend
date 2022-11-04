@@ -1,4 +1,5 @@
 ﻿using MicroserviceBook.DTOs.Publisher;
+using MicroserviceBook.ViewModels.BookVM;
 using MicroserviceBook.ViewModels.PublisherVM;
 
 namespace MicroserviceBook.Interfaces
@@ -11,5 +12,7 @@ namespace MicroserviceBook.Interfaces
         public Task<int> UpdatePublisher(UpdatePublisherDTO model);
 
         public Task<int> DeletePublisher(int id);
+
+        public Task<IEnumerable<GetBookVM>> SearchBookByPubisherFilter(string name);
     }
 }

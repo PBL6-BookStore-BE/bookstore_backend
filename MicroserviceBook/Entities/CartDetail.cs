@@ -5,6 +5,6 @@
     {
         public int Quantity { get; set; }
         public int IdCart { get; set; }
-        public string IdBook { get; set; }
+        public int IdBook { get; set; }
     }
 }

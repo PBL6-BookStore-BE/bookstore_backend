@@ -14,7 +14,6 @@ namespace MicroserviceAccount.Controllers
     {
         private readonly IAccountRepository _repo;
         private readonly ICurrentUserService _currentUserService;
-
         public AccountController(IAccountRepository repo, ICurrentUserService currentUserService)
         {
             _repo = repo;
@@ -25,6 +24,14 @@ namespace MicroserviceAccount.Controllers
         public async Task<ActionResult> RegisterAsync(RegisterDTO model)
         {
             var result = await _repo.RegisterAsync(model);
+            //var IdUser = _currentUserService.Id;
+            //var url = "https://localhost:7075/gateway/carts";
+            //var client = new RestClient(url);
+            //var request = new RestRequest(url, Method.Post);
+            //request.RequestFormat = DataFormat.Json;
+            ////request.AddBody(IdUser);
+            //RestResponse response = await client.ExecuteAsync(request);
+            //var Output = response.Content;
             return Ok(result);
         }
 
@@ -58,6 +65,17 @@ namespace MicroserviceAccount.Controllers
             var result = await _repo.ChangePassword(email, model);
             return Ok(result);
         }
+
+     
+
+       
+
+
+
+
+
+
+
 
         [HttpGet("bookt")]
         public async Task<IActionResult> BookAcc()

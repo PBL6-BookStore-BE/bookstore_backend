@@ -1,5 +1,6 @@
 ﻿using MicroserviceBook.DTOs.Author;
 using MicroserviceBook.DTOs.Category;
+using MicroserviceBook.ViewModels.BookVM;
 using MicroserviceBook.ViewModels.CategoryVM;
 
 namespace MicroserviceBook.Interfaces
@@ -13,5 +14,7 @@ namespace MicroserviceBook.Interfaces
 
         public Task<int> UpdateCategory(UpdateCategoryDTO model);
         public Task<int> DeleteCategory(int id);
+
+        public Task<IEnumerable<GetBookVM>> SearchBookByCategoryFilter(string name);
     }
 }

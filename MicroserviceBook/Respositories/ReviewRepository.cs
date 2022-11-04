@@ -3,6 +3,7 @@ using MicroserviceBook.Data;
 using MicroserviceBook.DTOs.Review;
 using MicroserviceBook.Entities;
 using MicroserviceBook.Interfaces;
+using MicroserviceBook.Services;
 using MicroserviceBook.ViewModels.ReviewVM;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,16 +13,24 @@ namespace MicroserviceBook.Respositories
     {
         private readonly BookDataContext _context;
         private readonly IMapper _mapper;
-
-        public ReviewRepository(BookDataContext context, IMapper mapper)
+        private readonly ICurrentUserService _service;
+        public ReviewRepository(BookDataContext context, IMapper mapper, ICurrentUserService service)
         {
             _context = context;
             _mapper = mapper;
+            _service = service;
         }
         public async Task<IEnumerable<GetReviewVM>> GetAllReviewsAsync()
         {
-            var reviews = await _context.Reviews.Where(r => r.IsDeleted == false).ToListAsync();
-            var reviewVM = _mapper.Map<IEnumerable<GetReviewVM>>(reviews);
+            var IdUser = _service.Id;
+            var reviews = await _context.Reviews.Where(r => r.IsDeleted == false && r.IdUser == IdUser).ToListAsync();
+            var reviewVM = new List<GetReviewVM>();
+            foreach (var i in reviews)
+            {
+                var k =   _mapper.Map<GetReviewVM>(i);
+                k.Username = _service.Username;
+                reviewVM.Add(k);
+            }
             return reviewVM;
 
 
@@ -29,8 +38,9 @@ namespace MicroserviceBook.Respositories
 
         public async Task<GetReviewVM> GetReviewAsync(int Id)
         {
-            var review = await _context.Reviews.Where(r => r.Id == Id).FirstOrDefaultAsync();
+            var review = await _context.Reviews.Where(r => r.Id == Id && r.IsDeleted == false).FirstOrDefaultAsync();
             var reviewVM  = _mapper.Map<GetReviewVM>(review);
+            reviewVM.Username = _service.Username;
             return reviewVM;
         }
         public async Task<int> CreateReview(CreateReviewDTO model)
@@ -41,6 +51,7 @@ namespace MicroserviceBook.Respositories
             {
                
                 var review = _mapper.Map<Review>(model);
+                review.IdUser = _service.Id;
                 _context.Reviews.Add(review);
                 await _context.SaveChangesAsync();
 
@@ -87,7 +98,7 @@ namespace MicroserviceBook.Respositories
 
         public async Task<int> UpdateReview(UpdateReviewDTO model)
         {
-            var review = await _context.Reviews.FirstOrDefaultAsync(r => r.Id == model.Id);
+            var review = await _context.Reviews.FirstOrDefaultAsync(r => r.Id == model.Id && r.IsDeleted == false);
             if (review == null)
             {
                 return 0;

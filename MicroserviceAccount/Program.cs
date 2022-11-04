@@ -6,6 +6,7 @@ using MicroserviceAccount.Interfaces;
 using MicroserviceAccount.Repositories;
 using MicroserviceAccount.Services;
 using MicroserviceAccount.Settings;
+using MicroserviceBook.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -106,10 +107,14 @@ builder.Services.AddAuthentication(auth =>
     };
 });
 
-builder.Services.AddTransient<IMailService, MailService>();
 builder.Services.AddTransient<IDatabaseSeeder, DatabaseSeeder>();
 builder.Services.AddTransient<IAccountRepository, AccountRepository>();
 builder.Services.AddTransient<ICurrentUserService, CurrentUserService>();
+
+
+
+builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings"));
+builder.Services.AddTransient<IMailService, MailService>();
 
 var app = builder.Build();
 
