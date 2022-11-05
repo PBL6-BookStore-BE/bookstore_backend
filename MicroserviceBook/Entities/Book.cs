@@ -10,5 +10,6 @@
         public int IdCategory { get; set; }
         public int IdPublisher { get; set; }
         public string UrlImage { get; set; }
+        public string Description { get; set; }
     }
 }

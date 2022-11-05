@@ -12,12 +12,13 @@ namespace MicroserviceBook.Interfaces
         public Task<int> UpdateBook(UpdateBookDTO model);
         public Task<int> DeleteBook(int id);
 
-        public string UploadFile(List<IFormFile> list_img);
+        //public string UploadFile(List<IFormFile> list_img);
 
-        public IEnumerable<string> GetUrls(string url_folder);
+        //public IEnumerable<string> GetUrls(string url_folder);
 
-
-        public Task<IEnumerable<GetBookVM>> Top10ByRating(); 
+        public Task<IEnumerable<GetBookVM>> Top10ByRating();
+        
+        public Task<IEnumerable<GetBookVM>> GetBookByPriceFilter(BookWithPrice model);
 
     }
 }

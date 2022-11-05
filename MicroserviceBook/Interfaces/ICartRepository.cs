@@ -1,14 +1,11 @@
-﻿//using MicroserviceBook.ViewModels.CartVM;
+﻿using MicroserviceBook.DTOs.Cart;
 
 namespace MicroserviceBook.Interfaces
 {
-    public interface ICartRepository
+    public interface ICartRepository 
     {
-        //public Task<int> CreateCart(CreateCartDTO model);
-        //public Task<int> DeleteCart(int id);
-        //public Task<GetCartVM> GetCartAsync(int id);
-        //public Task<GetCartVM> GetCartByIdUser(int idUser);
+        public Task<int> GetIdCart(string IdUser);
 
-
+        public Task<int> CreateCart();
     }
 }

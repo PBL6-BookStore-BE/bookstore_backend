@@ -35,7 +35,7 @@ namespace MicroserviceBook.Controllers
         }
 
 
-        [HttpGet("Top10Rating")]
+        [HttpGet("Top10")]
         public async Task<IActionResult> GetTop10ByRating()
         {
             return Ok(await _repo.Top10ByRating());
@@ -55,31 +55,10 @@ namespace MicroserviceBook.Controllers
             return Ok(await _repo.UpdateBook(model));
         }
 
-        //[HttpPost]
-        //[Route("upload")]
-        //public async Task<IActionResult> UploadImage(List<IFormFile> files)
-        //{
-        //    return Ok(await _repo.UploadFile(files));
-        //    //long size = files.Sum(f => f.Length);
-
-        //    //// full path to file in temp location
-        //    //var filePath = Path.GetTempFileName();
-
-        //    //foreach (var formFile in files)
-        //    //{
-        //    //    if (formFile.Length > 0)
-        //    //    {
-        //    //        using (var stream = new FileStream(filePath, FileMode.Create))
-        //    //        {
-        //    //            await formFile.CopyToAsync(stream);
-        //    //        }
-        //    //    }
-        //    //}
-
-        //    //// process uploaded files
-        //    //// Don't rely on or trust the FileName property without validation.
-
-        //    //return Ok(new { count = files.Count, size, filePath });
-        //}
+        [HttpGet("search")]
+        public async Task<IActionResult> GetBookByPriceFilter([FromForm] BookWithPrice model)
+        {
+            return Ok(await _repo.GetBookByPriceFilter(model));
+        }
     }
 }

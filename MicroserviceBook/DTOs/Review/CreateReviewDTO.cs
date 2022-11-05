@@ -5,7 +5,6 @@
         public int Rating { get; set; }
         public string Comment { get; set; }
         public int IdBook { get; set; }
-        public string IdUser { get; set; }
 
     }
 }

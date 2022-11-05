@@ -1,6 +1,7 @@
 ﻿using MicroserviceBook.DTOs.Book;
 using MicroserviceBook.DTOs.Review;
 using MicroserviceBook.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PBL6.BookStore.Models.DTOs.Book.BookDTO;
@@ -18,18 +19,28 @@ namespace MicroserviceBook.Controllers
             _repo = repo;
         }
 
+
+
+        [Authorize(AuthenticationSchemes = "Bearer")]
         [HttpGet]
         public async Task<IActionResult> GetAllReview()
         {
             return Ok(await _repo.GetAllReviewsAsync());
         }
 
+
+
+        [Authorize(AuthenticationSchemes = "Bearer")]
         [HttpPost]
         public async Task<IActionResult> CreateReview(CreateReviewDTO model)
         {
             return Ok(await _repo.CreateReview(model));
         }
 
+
+
+
+        [Authorize(AuthenticationSchemes = "Bearer")]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetReview(int id)
         {
@@ -37,6 +48,8 @@ namespace MicroserviceBook.Controllers
         }
 
 
+
+        [Authorize(AuthenticationSchemes = "Bearer")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteReview(int id)
         {

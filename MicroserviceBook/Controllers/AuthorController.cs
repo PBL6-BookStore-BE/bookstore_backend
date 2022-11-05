@@ -1,5 +1,6 @@
 ﻿using MicroserviceBook.DTOs.Author;
 using MicroserviceBook.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,6 +16,7 @@ namespace MicroserviceBook.Controllers
         {
             _repo = repo;
         }
+        //[Authorize(AuthenticationSchemes = "Bearer")]
         [HttpGet]
         public async Task<IActionResult> GetAllAuthors()
         {

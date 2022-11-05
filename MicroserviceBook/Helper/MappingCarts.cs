@@ -1,16 +1,17 @@
-﻿using AutoMapper;
-
+﻿
+using AutoMapper;
+using MicroserviceBook.DTOs.Cart;
 using MicroserviceBook.Entities;
 //using MicroserviceBook.ViewModels.CartVM;
 
-namespace MicroserviceBook.Helper
+namespace MicroserviceAccount.Helper
 {
     public class MappingCarts : Profile
     {
         public MappingCarts()
         {
-           //CreateMap<CreateCartDTO,Cart>();
-           //CreateMap<Cart, GetCartVM>();
+            CreateMap<CreateCartDTO, Cart>();
+         
         }
     }
 }

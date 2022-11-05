@@ -1,4 +1,5 @@
-﻿using MicroserviceAccount.Constants;
+﻿using AutoMapper;
+using MicroserviceAccount.Constants;
 using MicroserviceAccount.Data;
 using MicroserviceAccount.DTOs;
 using MicroserviceAccount.Entities;
@@ -197,7 +198,7 @@ namespace MicroserviceAccount.Repositories
             }
             var claims = new[]
             {
-                new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
+                new Claim(ClaimTypes.NameIdentifier, user.UserName),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 new Claim(ClaimTypes.Email, user.Email),
                 new Claim(ClaimTypes.Sid, user.Id)
