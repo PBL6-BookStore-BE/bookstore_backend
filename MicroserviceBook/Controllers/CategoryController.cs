@@ -47,11 +47,5 @@ namespace MicroserviceBook.Controllers
             return Ok(await _repository.UpdateCategory(model));
         }
 
-
-        [HttpGet("search")]
-        public async Task<IActionResult> SearchBookByCategory([FromForm] string name)
-        {
-            return Ok(await _repository.SearchBookByCategoryFilter(name));
-        }
     }
 }

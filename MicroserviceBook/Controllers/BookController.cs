@@ -10,10 +10,13 @@ namespace MicroserviceBook.Controllers
     public class BookController : ControllerBase
     {
         public readonly IBookRepository _repo;
-
-        public BookController(IBookRepository repo)
+        public readonly IPublisherRepository _pubRepo;
+        public readonly ICategoryRepository _categoryRepo;
+        public BookController(IBookRepository repo, IPublisherRepository pubRepo, ICategoryRepository categoryRepo)
         {
             _repo = repo;
+            _pubRepo = pubRepo;
+            _categoryRepo = categoryRepo;
         }
 
         [HttpGet]
@@ -56,9 +59,13 @@ namespace MicroserviceBook.Controllers
         }
 
         [HttpGet("search")]
-        public async Task<IActionResult> GetBookByPriceFilter([FromForm] BookWithPrice model)
+        public async Task<IActionResult> GetBookByPriceFilter(decimal? lowest, decimal? highest, string? namePub, string? nameCate)
         {
-            return Ok(await _repo.GetBookByPriceFilter(model));
+
+            var IdPubs = await _pubRepo.getPublisherByName(namePub);
+            var IdCates = await _categoryRepo.getCategoryByName(nameCate);
+            
+            return Ok(await _repo.Searchbook(lowest,highest,IdCates,IdPubs));
         }
     }
 }

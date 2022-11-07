@@ -174,52 +174,6 @@
       "UpstreamHttpMethod": [ "GET" ]
     },
 
-
-    //Tim kiem Book theo nha xuat ban
-    {
-      "DownstreamPathTemplate": "/api/publisher/search",
-      "DownstreamScheme": "https",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 6002
-        }
-      ],
-      "UpstreamPathTemplate": "/gateway/filterbypublisher",
-      "UpstreamHttpMethod": [ "GET" ]
-    },
-
-
-    //Tim kiem Book theo the loai
-    {
-      "DownstreamPathTemplate": "/api/category/search",
-      "DownstreamScheme": "https",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 6002
-        }
-      ],
-      "UpstreamPathTemplate": "/gateway/filterbycategory",
-      "UpstreamHttpMethod": [ "GET" ]
-    },
-
-    //Tim kiem Book theo gia
-
-    {
-      "DownstreamPathTemplate": "/api/book/search",
-      "DownstreamScheme": "https",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 6002
-        }
-      ],
-      "UpstreamPathTemplate": "/gateway/filterbyprice",
-      "UpstreamHttpMethod": [ "GET" ]
-    },
-
-
     //Gateway cho author
 
     {
@@ -318,6 +272,20 @@
       ],
       "UpstreamPathTemplate": "/gateway/details",
       "UpstreamHttpMethod": [ "POST", "GET", "PUT", "DELETE" ]
+    },
+    //Tim kiem Book 
+
+    {
+      "DownstreamPathTemplate": "/api/book/search",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 6002
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/searchbook",
+      "UpstreamHttpMethod": [ "GET" ]
     }
 
   ]

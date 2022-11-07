@@ -13,6 +13,6 @@ namespace MicroserviceBook.Interfaces
 
         public Task<int> DeletePublisher(int id);
 
-        public Task<IEnumerable<GetBookVM>> SearchBookByPubisherFilter(string name);
+        public Task<IList<int>> getPublisherByName(string name);
     }
 }
