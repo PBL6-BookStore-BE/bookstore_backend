@@ -15,6 +15,6 @@ namespace MicroserviceBook.Interfaces
         public Task<int> UpdateCategory(UpdateCategoryDTO model);
         public Task<int> DeleteCategory(int id);
 
-        public Task<IEnumerable<GetBookVM>> SearchBookByCategoryFilter(string name);
+        public Task<IList<int>> getCategoryByName(string name);
     }
 }

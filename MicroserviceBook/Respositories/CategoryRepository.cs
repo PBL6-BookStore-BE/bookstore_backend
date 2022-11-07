@@ -60,6 +60,14 @@ namespace MicroserviceBook.Respositories
             return result;
         }
 
+        public async Task<IList<int>> getCategoryByName(string name)
+        {
+            var res = String.IsNullOrEmpty(name) ?
+                await _context.Categories.Where(p=> p.IsDeleted == false).Select(p => p.Id).ToListAsync()
+                : await _context.Categories.Where(s => s.Name.ToLower().Contains(name.Trim().ToLower())  && s.IsDeleted == false).Select(p => p.Id).ToListAsync();
+            return res;
+        }
+
         public async Task<int> UpdateCategory(UpdateCategoryDTO model)
         {
             if (model == null)
@@ -71,49 +79,6 @@ namespace MicroserviceBook.Respositories
             category.Name = model.Name;
             await _context.SaveChangesAsync();
             return category.Id;
-        }
-
-        public async Task<IEnumerable<GetBookVM>> SearchBookByCategoryFilter(string name)
-        {
-
-            if (!String.IsNullOrEmpty(name))
-            {
-                var res = await _context.Categories.Where(s => s.Name.ToLower().Contains(name.Trim().ToLower())).ToListAsync();
-                if (res == null)
-                {
-                    return default;
-                }
-                else
-                {
-                    var list = (from p in res
-                                join book in _context.Books
-                          on p.Id equals book.IdCategory
-                                select book.Id).ToList();
-                    if (list == null)
-                    {
-                        return default;
-                    }
-                    else
-                    {
-                        var temp_list = new List<GetBookVM>();
-                        foreach (var i in list)
-                        {
-                            var book = await _service.GetBookById(i);
-                            if (book != null)
-                            {
-                                temp_list.Add(book);
-                            }
-                        }
-                        return temp_list;
-                    }
-
-                }
-
-            }
-            else
-            {
-                return default;
-            }
         }
     }
 }

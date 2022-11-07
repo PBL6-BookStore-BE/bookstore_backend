@@ -153,21 +153,40 @@ namespace MicroserviceBook.Respositories
 
         }
 
-        public async Task<IEnumerable<GetBookVM>> GetBookByPriceFilter(BookWithPrice model)
+        public async Task<IEnumerable<GetBookVM>> Searchbook(decimal? lowprice, decimal? highprice, IList<int>? IdCategory, IList<int>? IdPublisher)
         {
-            var result = await _context.Books.Where(b => (b.Price >= model.lowest && b.Price <= model.highest)).OrderBy(b => b.Price).ToListAsync();
-            if (result.Count == 0)
+            var qs = await _context.Books.Where(b => b.IsDeleted == false).ToListAsync();
+            if (lowprice.HasValue)
             {
-                return default;
+                qs = qs.Where(b => (b.Price >= lowprice)).ToList();
+            }
+            if (highprice.HasValue)
+            {
+                qs = qs.Where(b => (b.Price <= highprice)).ToList();
+            }
+            if (IdCategory is not null && IdCategory.Any())
+            {
+                qs = qs.Where(b => IdCategory.Contains(b.IdCategory)).ToList();
+            }
+
+            if (IdPublisher is not null && IdPublisher.Any())
+            {
+                qs = qs.Where(b => IdPublisher.Contains(b.IdPublisher)).ToList();
+            }
+            if (qs.Count == 0)
+            {
+                return new List<GetBookVM>();
             }
             else
             {
                 var list = new List<GetBookVM>();
-                foreach ( var i in result){
+                foreach (var i in qs)
+                {
                     list.Add(await _service.GetBookById(i.Id));
                 }
                 return list;
             }
+
         }
     }
 }
