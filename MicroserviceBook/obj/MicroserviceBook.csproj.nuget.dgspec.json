@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\PBL6\\PBL6.BookStore.Microservices\\MicroserviceBook\\MicroserviceBook.csproj": {}
+    "C:\\Users\\linh-vostro\\Downloads\\bookstore_backend\\bookstore_backend\\MicroserviceBook\\MicroserviceBook.csproj": {}
   },
   "projects": {
-    "D:\\PBL6\\PBL6.BookStore.Microservices\\MicroserviceBook\\MicroserviceBook.csproj": {
+    "C:\\Users\\linh-vostro\\Downloads\\bookstore_backend\\bookstore_backend\\MicroserviceBook\\MicroserviceBook.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\PBL6\\PBL6.BookStore.Microservices\\MicroserviceBook\\MicroserviceBook.csproj",
+        "projectUniqueName": "C:\\Users\\linh-vostro\\Downloads\\bookstore_backend\\bookstore_backend\\MicroserviceBook\\MicroserviceBook.csproj",
         "projectName": "MicroserviceBook",
-        "projectPath": "D:\\PBL6\\PBL6.BookStore.Microservices\\MicroserviceBook\\MicroserviceBook.csproj",
+        "projectPath": "C:\\Users\\linh-vostro\\Downloads\\bookstore_backend\\bookstore_backend\\MicroserviceBook\\MicroserviceBook.csproj",
         "packagesPath": "C:\\Users\\linh-vostro\\.nuget\\packages\\",
-        "outputPath": "D:\\PBL6\\PBL6.BookStore.Microservices\\MicroserviceBook\\obj\\",
+        "outputPath": "C:\\Users\\linh-vostro\\Downloads\\bookstore_backend\\bookstore_backend\\MicroserviceBook\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
           "C:\\Users\\linh-vostro\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,7 +22,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
+          "http://172.20.10.2:8081/repository/nugetgroup/": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -52,6 +48,14 @@
             "AutoMapper.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
               "version": "[12.0.0, )"
+            },
+            "CloudinaryDotNet": {
+              "target": "Package",
+              "version": "[1.20.0, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[6.0.9, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
@@ -97,7 +101,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.403\\RuntimeIdentifierGraph.json"
         }
       }
     }

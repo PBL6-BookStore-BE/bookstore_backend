@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using MyEmailSender;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using System.Text;
 
@@ -76,6 +77,8 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.Configure<JWT>(builder.Configuration.GetSection("JWT"));
 builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings"));
+builder.Services.Configure<EmailSender>(builder.Configuration.GetSection("EmailSender"));
+builder.Services.Configure<MyMailSettings>(builder.Configuration.GetSection("MyMailSettings"));
 
 builder.Services.AddIdentity<User, Role>(options =>
 {
@@ -114,6 +117,8 @@ builder.Services.AddTransient<ICurrentUserService, CurrentUserService>();
 
 
 builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings"));
+builder.Services.Configure<MyMailSettings>(builder.Configuration.GetSection("MyMailSettings"));
+builder.Services.Configure<EmailSender>(builder.Configuration.GetSection("EmailSender"));
 builder.Services.AddTransient<IMailService, MailService>();
 
 var app = builder.Build();

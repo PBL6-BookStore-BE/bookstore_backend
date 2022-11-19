@@ -3,37 +3,25 @@ using MailKit.Security;
 using MicroserviceAccount.Settings;
 using Microsoft.Extensions.Options;
 using MimeKit;
+using MyEmailSender;
 
 namespace MicroserviceAccount.Services
 {
     public class MailService : IMailService
     {
-        private readonly MailSettings _mailSettings;
+        private readonly EmailSender _emailSender;
 
-        public MailService(IOptions<MailSettings> mailSettings)
+        public MailService(IOptions<MyMailSettings> myMailSettings)
         {
-            _mailSettings = mailSettings.Value;
+            if (myMailSettings != null)
+            {
+                _emailSender = new EmailSender(myMailSettings);
+            }    
         }
 
         public async Task<bool> ForgetPasswordSendMail(string toEmail, string username, string resetToken)
         {
-            string FilePath = "Templates\\ForgetPasswordSendMail.html";
-            StreamReader str = new StreamReader(FilePath);
-            string MailText = str.ReadToEnd();
-            str.Close();
-            MailText = MailText.Replace("[EndpointUrl]", resetToken);
-            var email = new MimeMessage();
-            email.Sender = MailboxAddress.Parse(_mailSettings.Email);
-            email.To.Add(MailboxAddress.Parse(toEmail));
-            email.Subject = "Welcome " + username;
-            var builder = new BodyBuilder();
-            builder.HtmlBody = MailText;
-            email.Body = builder.ToMessageBody();
-            using var smtp = new SmtpClient();
-            smtp.Connect(_mailSettings.Host, _mailSettings.Port, SecureSocketOptions.StartTls);
-            smtp.Authenticate(_mailSettings.Email, _mailSettings.Password);
-            await smtp.SendAsync(email);
-            smtp.Disconnect(true);
+            await _emailSender.ForgetPasswordSendMail(toEmail, username, resetToken);
             return true;
         }
     }

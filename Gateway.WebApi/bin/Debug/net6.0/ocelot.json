@@ -64,6 +64,90 @@
       "UpstreamHttpMethod": [ "POST" ]
     },
 
+    //Gateway cho book
+    {
+      "DownstreamPathTemplate": "/api/book",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 6002
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/books",
+      "UpstreamHttpMethod": [ "GET", "POST" ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/book/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 6002
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/book/{id}",
+      "UpstreamHttpMethod": [ "GET", "PUT", "DELETE" ]
+    },
+
+    //Gateway cho top10 rating book
+    {
+      "DownstreamPathTemplate": "/api/book/Top10",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 6002
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/topbook",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+
+
+
+    //Gateway cho review
+    {
+      "DownstreamPathTemplate": "/api/review",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 6002
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/reviews",
+      "UpstreamHttpMethod": [ "GET", "POST" ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/review/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 6002
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/review/{id}",
+      "UpstreamHttpMethod": [ "GET", "DELETE", "PUT" ]
+    },
+
+    //Gateway cho cartdetail
+
+    {
+      "DownstreamPathTemplate": "/api/cartdetail/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 6002
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/cartdetail/{id}",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
     {
       "DownstreamPathTemplate": "/api/account/administrator/user",
       "DownstreamScheme": "https",
@@ -86,12 +170,14 @@
           "Port": 6001
         }
       ],
-      "UpstreamPathTemplate": "/gateway/bookt",
+      "UpstreamPathTemplate": "/gateway/cart/get",
       "UpstreamHttpMethod": [ "GET" ]
     },
 
+    //Gateway cho author
+
     {
-      "DownstreamPathTemplate": "/api/book",
+      "DownstreamPathTemplate": "/api/author",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
@@ -99,8 +185,108 @@
           "Port": 6002
         }
       ],
-      "UpstreamPathTemplate": "/gateway/book",
+      "UpstreamPathTemplate": "/gateway/authors",
+      "UpstreamHttpMethod": [ "GET", "POST" ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/author/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 6002
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/author/{id}",
+      "UpstreamHttpMethod": [ "GET", "DELETE", "PUT" ]
+    },
+
+
+
+    //Gateway cho category
+
+    {
+      "DownstreamPathTemplate": "/api/category",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 6002
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/categories",
+      "UpstreamHttpMethod": [ "GET", "POST" ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/category/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 6002
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/category/{id}",
+      "UpstreamHttpMethod": [ "GET", "DELETE", "PUT" ]
+    },
+
+    //Gateway cho publisher
+
+    {
+      "DownstreamPathTemplate": "/api/publisher",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 6002
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/publishers",
+      "UpstreamHttpMethod": [ "GET", "POST" ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/publisher/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 6002
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/publisher/{id}",
+      "UpstreamHttpMethod": [ "GET", "DELETE", "PUT" ]
+    },
+
+    //Gateway cart detail
+    {
+      "DownstreamPathTemplate": "/api/cartdetail",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 6002
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/details",
+      "UpstreamHttpMethod": [ "POST", "GET", "PUT", "DELETE" ]
+    },
+    //Tim kiem Book 
+
+    {
+      "DownstreamPathTemplate": "/api/book/search",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 6002
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/searchbook",
       "UpstreamHttpMethod": [ "GET" ]
     }
+
   ]
 }
