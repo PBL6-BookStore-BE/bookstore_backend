@@ -1,8 +1,4 @@
-﻿
-
-using MicroserviceBook.DTOs.Category;
-using MicroserviceBook.ViewModels.CategoryVM;
-using MicroserviceOrder.DTOs.Order;
+﻿using MicroserviceOrder.DTOs.Order;
 using MicroserviceOrder.ViewModels.OrderVM;
 
 namespace MicroserviceOrder.Interfaces

@@ -1,13 +1,13 @@
-using MicroserviceAccount.Services;
 using MicroserviceOrder.Data;
 using MicroserviceOrder.Interfaces;
 using MicroserviceOrder.Repositories;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+using MicroserviceOrder.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 var builder = WebApplication.CreateBuilder(args);
 

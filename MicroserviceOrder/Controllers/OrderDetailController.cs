@@ -1,6 +1,4 @@
-﻿using MicroserviceBook.DTOs.Category;
-using MicroserviceBook.Interfaces;
-using MicroserviceOrder.DTOs.OrderDetail;
+﻿using MicroserviceOrder.DTOs.OrderDetail;
 using MicroserviceOrder.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

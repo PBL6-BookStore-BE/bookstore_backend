@@ -1,6 +1,4 @@
 ﻿using AutoMapper;
-using MicroserviceAccount.Services;
-using MicroserviceBook.ViewModels.CategoryVM;
 using MicroserviceOrder.Data;
 using MicroserviceOrder.DTOs.OrderDetail;
 using MicroserviceOrder.Interfaces;

@@ -1,5 +1,4 @@
-﻿using MicroserviceAccount.Entities;
-using MicroserviceOrder.Entities;
+﻿using MicroserviceOrder.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

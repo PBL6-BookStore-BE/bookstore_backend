@@ -1,10 +1,9 @@
 ﻿using AutoMapper;
-using MicroserviceAccount.Services;
-using MicroserviceBook.Entities;
 using MicroserviceOrder.Data;
 using MicroserviceOrder.DTOs.Order;
 using MicroserviceOrder.DTOs.OrderDetail;
 using MicroserviceOrder.Interfaces;
+using MicroserviceOrder.Services;
 using MicroserviceOrder.ViewModels.OrderDetailVM;
 using MicroserviceOrder.ViewModels.OrderVM;
 using Microsoft.EntityFrameworkCore;
