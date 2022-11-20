@@ -17,6 +17,8 @@ using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
+//Them Sentry vao Project
+builder.WebHost.UseSentry();
 
 // Add services to the container.
 
@@ -122,6 +124,9 @@ builder.Services.Configure<EmailSender>(builder.Configuration.GetSection("EmailS
 builder.Services.AddTransient<IMailService, MailService>();
 
 var app = builder.Build();
+
+//Them Sentry vao project
+app.UseSentryTracing();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

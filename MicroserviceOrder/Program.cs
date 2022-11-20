@@ -10,6 +10,8 @@ using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 var builder = WebApplication.CreateBuilder(args);
+//Them Sentry vao Project
+builder.WebHost.UseSentry();
 
 // Add services to the container.
 
@@ -96,6 +98,12 @@ builder.Services.AddTransient<IPaymentRepository, PaymentRepository>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 var app = builder.Build();
+
+
+
+//Them Sentry vao project
+app.UseSentryTracing();
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
