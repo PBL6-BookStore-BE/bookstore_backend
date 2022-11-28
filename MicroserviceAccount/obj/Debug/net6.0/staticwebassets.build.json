@@ -1,11 +1,23 @@
 {
   "Version": 1,
-  "Hash": "095sBkDxnCLMhDswPyUpvBJq4qAHRIFzv13VievwpJY=",
+  "Hash": "2ocXNhgxTfOGWK+AewWB6XHPCKLwapresANCuLTuI2E=",
   "Source": "MicroserviceAccount",
   "BasePath": "_content/MicroserviceAccount",
   "Mode": "Default",
   "ManifestType": "Build",
-  "ReferencedProjectsConfiguration": [],
+  "ReferencedProjectsConfiguration": [
+    {
+      "Identity": "C:\\Users\\linh-vostro\\Downloads\\bookstore_backend\\bookstore_backend\\MicroserviceBook\\MicroserviceBook.csproj",
+      "Version": 2,
+      "Source": "MicroserviceBook",
+      "GetPublishAssetsTargets": "ComputeReferencedStaticWebAssetsPublishManifest;GetCurrentProjectPublishStaticWebAssetItems",
+      "AdditionalPublishProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier",
+      "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
+      "AdditionalBuildProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier"
+    }
+  ],
   "DiscoveryPatterns": [],
   "Assets": []
 }
