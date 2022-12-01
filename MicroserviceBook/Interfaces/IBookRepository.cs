@@ -14,6 +14,7 @@ namespace MicroserviceBook.Interfaces
         public Task<IEnumerable<GetBookVM>> Top10ByRating();
 
         public Task<IEnumerable<GetBookVM>> Searchbook(decimal? lowprice, decimal? highprice, IList<int>? IdCategory, IList<int>? IdPublisher);
+        public Task<IEnumerable<GetBookVM>> GetBookByNameFilter(string? nameBook);
 
     }
 }

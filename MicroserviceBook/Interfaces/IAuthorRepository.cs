@@ -12,5 +12,6 @@ namespace MicroserviceBook.Interfaces
 
         public Task<int> UpdateAuthor(UpdateAuthorDTO model);
         public Task<int> DeleteAuthor(int id);
+        public Task<IEnumerable<GetAllAuthorsVM>> GetAuthorByNameFilter(string? name);
     }
 }

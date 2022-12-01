@@ -42,6 +42,12 @@ namespace MicroserviceBook.Controllers
         {
             return Ok(await _repo.DeleteAuthor(id));
         }
+        [HttpGet("search")]
+        public async Task<IActionResult> getAuthorByNameFilter(string? name)
+        {
+            return Ok(await _repo.GetAuthorByNameFilter(name));
+        }
+
 
     }
 }

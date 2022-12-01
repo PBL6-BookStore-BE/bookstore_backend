@@ -67,5 +67,10 @@ namespace MicroserviceBook.Controllers
             
             return Ok(await _repo.Searchbook(lowest,highest,IdCates,IdPubs));
         }
+        [HttpGet("name")]
+        public async Task<IActionResult> GetBookByName(string? nameBook)
+        {
+            return Ok(await _repo.GetBookByNameFilter(nameBook));
+        }
     }
 }
