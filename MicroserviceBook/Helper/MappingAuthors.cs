@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MicroserviceBook.DTOs.Author;
 using MicroserviceBook.Entities;
+using MicroserviceBook.ViewModels.AuthorVM;
 
 namespace MicroserviceBook.Helper
 {
@@ -10,6 +11,7 @@ namespace MicroserviceBook.Helper
         {
 
             CreateMap<CreateAuthorDTO, Author>();
+            CreateMap<Author, GetAllAuthorsVM>();
         }
     }
 }
