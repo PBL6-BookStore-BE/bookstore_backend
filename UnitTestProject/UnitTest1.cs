@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using ConsoleApp1;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace UnitTestProject
 {
@@ -8,7 +9,7 @@ namespace UnitTestProject
         [TestMethod]
         public void TestMethod1()
         {
-            Assert.IsNotNull(1);
+            Assert.AreEqual("nhim", Program.CreateMessage());
         }
     }
 }

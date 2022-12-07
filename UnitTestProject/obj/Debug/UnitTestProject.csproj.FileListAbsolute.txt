@@ -13,3 +13,6 @@ C:\Users\linh-vostro\Downloads\bookstore_backend\bookstore_backend\UnitTestProje
 C:\Users\linh-vostro\Downloads\bookstore_backend\bookstore_backend\UnitTestProject\obj\Debug\UnitTestProject.csproj.CopyComplete
 C:\Users\linh-vostro\Downloads\bookstore_backend\bookstore_backend\UnitTestProject\obj\Debug\UnitTestProject.dll
 C:\Users\linh-vostro\Downloads\bookstore_backend\bookstore_backend\UnitTestProject\obj\Debug\UnitTestProject.pdb
+C:\Users\linh-vostro\Downloads\bookstore_backend\bookstore_backend\UnitTestProject\bin\Debug\ConsoleApp1.exe
+C:\Users\linh-vostro\Downloads\bookstore_backend\bookstore_backend\UnitTestProject\bin\Debug\ConsoleApp1.pdb
+C:\Users\linh-vostro\Downloads\bookstore_backend\bookstore_backend\UnitTestProject\bin\Debug\ConsoleApp1.exe.config
