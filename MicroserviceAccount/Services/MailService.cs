@@ -1,8 +1,4 @@
-﻿using MailKit.Net.Smtp;
-using MailKit.Security;
-using MicroserviceAccount.Settings;
-using Microsoft.Extensions.Options;
-using MimeKit;
+﻿using Microsoft.Extensions.Options;
 using MyEmailSender;
 
 namespace MicroserviceAccount.Services
@@ -16,7 +12,7 @@ namespace MicroserviceAccount.Services
             if (myMailSettings != null)
             {
                 _emailSender = new EmailSender(myMailSettings);
-            }    
+            }
         }
 
         public async Task<bool> ForgetPasswordSendMail(string toEmail, string username, string resetToken)

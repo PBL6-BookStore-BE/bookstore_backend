@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "2ocXNhgxTfOGWK+AewWB6XHPCKLwapresANCuLTuI2E=",
+  "Hash": "bMWMJUbYURNcG7kyaex9kTsBqhHX54+YjIE+/PHIpa4=",
   "Source": "MicroserviceAccount",
   "BasePath": "_content/MicroserviceAccount",
   "Mode": "Default",
@@ -12,10 +12,10 @@
       "Source": "MicroserviceBook",
       "GetPublishAssetsTargets": "ComputeReferencedStaticWebAssetsPublishManifest;GetCurrentProjectPublishStaticWebAssetItems",
       "AdditionalPublishProperties": "Configuration=Debug;Platform=AnyCPU",
-      "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier",
+      "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework",
       "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
       "AdditionalBuildProperties": "Configuration=Debug;Platform=AnyCPU",
-      "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier"
+      "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework"
     }
   ],
   "DiscoveryPatterns": [],

@@ -5,7 +5,6 @@ using MicroserviceBook.Service;
 using MicroserviceBook.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -21,7 +20,6 @@ builder.Services.AddCors(o =>
                     .WithOrigins("http://localhost:3000")
                     .AllowAnyMethod()
                     .AllowAnyHeader()));
-
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -88,9 +86,6 @@ builder.Services.AddAuthentication(auth =>
     };
 });
 
-
-
-
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddTransient<IBookRepository, BookRepository>();
 builder.Services.AddTransient<IAuthorRepository, AuthorRepository>();
@@ -103,17 +98,9 @@ builder.Services.AddTransient<IPictureService, PictureService>();
 builder.Services.AddTransient<ICartRepository, CartRepository>();
 builder.Services.AddTransient<ICurrentUserService, CurrentUserService>();
 
-
 builder.Services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
-
-
-
-
-
-
 var app = builder.Build();
-
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

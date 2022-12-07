@@ -5,13 +5,17 @@ VisualStudioVersion = 17.3.32922.545
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Microservices", "Microservices", "{7F9BB33F-50EC-4443-A3E9-917C3699007F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroserviceAccount", "MicroserviceAccount\MicroserviceAccount.csproj", "{56D73CC5-5D80-4658-8FF4-58CF6593AC18}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroserviceAccount", "MicroserviceAccount\MicroserviceAccount.csproj", "{56D73CC5-5D80-4658-8FF4-58CF6593AC18}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroserviceBook", "MicroserviceBook\MicroserviceBook.csproj", "{C382C687-FBF4-4EC7-9F9D-823135A00B01}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroserviceBook", "MicroserviceBook\MicroserviceBook.csproj", "{C382C687-FBF4-4EC7-9F9D-823135A00B01}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroserviceOrder", "MicroserviceOrder\MicroserviceOrder.csproj", "{2EBF72DF-DF9A-4471-A667-0BB7D9178842}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroserviceOrder", "MicroserviceOrder\MicroserviceOrder.csproj", "{2EBF72DF-DF9A-4471-A667-0BB7D9178842}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gateway.WebApi", "Gateway.WebApi\Gateway.WebApi.csproj", "{C5D83D47-7238-45F9-BEEE-97B1F3B9C5FA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gateway.WebApi", "Gateway.WebApi\Gateway.WebApi.csproj", "{C5D83D47-7238-45F9-BEEE-97B1F3B9C5FA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestProject", "TestProject\TestProject.csproj", "{47D9CC2E-611A-4A88-A28A-5ADFF640D737}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject", "UnitTestProject\UnitTestProject.csproj", "{989946D1-D610-49D2-BDF6-C65285A457BC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +39,14 @@ Global
 		{C5D83D47-7238-45F9-BEEE-97B1F3B9C5FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C5D83D47-7238-45F9-BEEE-97B1F3B9C5FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C5D83D47-7238-45F9-BEEE-97B1F3B9C5FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47D9CC2E-611A-4A88-A28A-5ADFF640D737}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47D9CC2E-611A-4A88-A28A-5ADFF640D737}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47D9CC2E-611A-4A88-A28A-5ADFF640D737}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47D9CC2E-611A-4A88-A28A-5ADFF640D737}.Release|Any CPU.Build.0 = Release|Any CPU
+		{989946D1-D610-49D2-BDF6-C65285A457BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{989946D1-D610-49D2-BDF6-C65285A457BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{989946D1-D610-49D2-BDF6-C65285A457BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{989946D1-D610-49D2-BDF6-C65285A457BC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

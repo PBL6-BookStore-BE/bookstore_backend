@@ -127,3 +127,8 @@ C:\Users\linh-vostro\Downloads\bookstore_backend\bookstore_backend\MicroserviceB
 C:\Users\linh-vostro\Downloads\bookstore_backend\bookstore_backend\MicroserviceBook\obj\Debug\net6.0\MicroserviceBook.pdb
 C:\Users\linh-vostro\Downloads\bookstore_backend\bookstore_backend\MicroserviceBook\obj\Debug\net6.0\MicroserviceBook.genruntimeconfig.cache
 C:\Users\linh-vostro\Downloads\bookstore_backend\bookstore_backend\MicroserviceBook\obj\Debug\net6.0\ref\MicroserviceBook.dll
+C:\Users\linh-vostro\Downloads\bookstore_backend\bookstore_backend\MicroserviceBook\obj\Debug\net6.0\staticwebassets\msbuild.MicroserviceBook.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\linh-vostro\Downloads\bookstore_backend\bookstore_backend\MicroserviceBook\obj\Debug\net6.0\staticwebassets\msbuild.build.MicroserviceBook.props
+C:\Users\linh-vostro\Downloads\bookstore_backend\bookstore_backend\MicroserviceBook\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.MicroserviceBook.props
+C:\Users\linh-vostro\Downloads\bookstore_backend\bookstore_backend\MicroserviceBook\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.MicroserviceBook.props
+C:\Users\linh-vostro\Downloads\bookstore_backend\bookstore_backend\MicroserviceBook\obj\Debug\net6.0\staticwebassets.pack.json
