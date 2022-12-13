@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "dVGmjXnuvmiqHyowpLZlJsMS1/jnhI55LMfbKN3wOCZnX3aSBKuRJyNFZoG7wMiAMYGCNKspSsf9KVxFzh6lWQ==",
+  "dgSpecHash": "EBLs+he9W6c9sLaRczHUuXHiouX5m7pAOxuUEiI0jZjhC9OR9RA5ubos/trak1tIv4mau0XVYZmzPCPG411Lug==",
   "success": true,
   "projectFilePath": "C:\\Users\\linh-vostro\\Downloads\\bookstore_backend\\bookstore_backend\\MicroserviceAccount\\MicroserviceAccount.csproj",
   "expectedPackageFiles": [
@@ -88,6 +88,7 @@
     "C:\\Users\\linh-vostro\\.nuget\\packages\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl\\4.3.2\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
     "C:\\Users\\linh-vostro\\.nuget\\packages\\selenium.webdriver\\4.7.0\\selenium.webdriver.4.7.0.nupkg.sha512",
     "C:\\Users\\linh-vostro\\.nuget\\packages\\sharpziplib\\1.4.1\\sharpziplib.1.4.1.nupkg.sha512",
+    "C:\\Users\\linh-vostro\\.nuget\\packages\\stylecop.analyzers\\1.1.118\\stylecop.analyzers.1.1.118.nupkg.sha512",
     "C:\\Users\\linh-vostro\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
     "C:\\Users\\linh-vostro\\.nuget\\packages\\swashbuckle.aspnetcore.newtonsoft\\6.2.3\\swashbuckle.aspnetcore.newtonsoft.6.2.3.nupkg.sha512",
     "C:\\Users\\linh-vostro\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",

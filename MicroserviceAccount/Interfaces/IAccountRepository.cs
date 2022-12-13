@@ -18,5 +18,7 @@ namespace MicroserviceAccount.Interfaces
         Task<AuthenticationVM> CreateUser(CreateUserDTO model);
 
         Task<IEnumerable<GetAllUsersVM>> GetAllUsers();
+
+        Task<GetUserVM> GetUserByEmail(String email);
     }
 }
