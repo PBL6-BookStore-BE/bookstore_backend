@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "EBLs+he9W6c9sLaRczHUuXHiouX5m7pAOxuUEiI0jZjhC9OR9RA5ubos/trak1tIv4mau0XVYZmzPCPG411Lug==",
+  "dgSpecHash": "M4kdPVZH56cTt+lpeckumuS269xijLLhENJb+Va3QFwUT9ROOK7egws91GiX+6zt0qSCAg30OA9CX+JgHyzu7Q==",
   "success": true,
   "projectFilePath": "C:\\Users\\linh-vostro\\Downloads\\bookstore_backend\\bookstore_backend\\MicroserviceAccount\\MicroserviceAccount.csproj",
   "expectedPackageFiles": [
@@ -145,8 +145,7 @@
     "C:\\Users\\linh-vostro\\.nuget\\packages\\system.threading\\4.3.0\\system.threading.4.3.0.nupkg.sha512",
     "C:\\Users\\linh-vostro\\.nuget\\packages\\system.threading.tasks\\4.3.0\\system.threading.tasks.4.3.0.nupkg.sha512",
     "C:\\Users\\linh-vostro\\.nuget\\packages\\tweetinviapi\\5.0.4\\tweetinviapi.5.0.4.nupkg.sha512",
-    "C:\\Users\\linh-vostro\\.nuget\\packages\\webdrivermanager\\2.16.2\\webdrivermanager.2.16.2.nupkg.sha512",
-    "C:\\Users\\linh-vostro\\.nuget\\packages\\xunit.runner.visualstudio\\2.4.5\\xunit.runner.visualstudio.2.4.5.nupkg.sha512"
+    "C:\\Users\\linh-vostro\\.nuget\\packages\\webdrivermanager\\2.16.2\\webdrivermanager.2.16.2.nupkg.sha512"
   ],
   "logs": [
     {
