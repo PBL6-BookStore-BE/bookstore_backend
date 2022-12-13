@@ -99,6 +99,7 @@ namespace MicroserviceOrder.Repositories
             order.Status = model.Status;
             order.IdUser = model.IdUser;
             order.IdPayment = model.IdPayment;
+            order.OrderAddress = model.OrderAddress;
 
             foreach (var i in model.OrderDetails)
             {
