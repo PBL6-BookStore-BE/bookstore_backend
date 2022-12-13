@@ -113,7 +113,27 @@ namespace MicroserviceBook.Respositories
                 book.PublicationDate = model.PublicationDate;
                 book.IdCategory = model.IdCategory;
                 book.IdPublisher = model.IdPublisher;
+                book.Description = model.Description;
+                if (model.list_img != null)
+                    book.UrlImage = _picService.UploadFile(model.list_img);
                 await _context.SaveChangesAsync();
+
+                var temp_authors = await _context.BookAuthors.Where(ba => ba.IdBook == book.Id).ToListAsync();
+                foreach (var author in temp_authors)
+                {
+                    author.IsDeleted = true;
+                    author.DeletedDate = DateTime.Now;
+                }
+                foreach (var id in model.IdAuthors)
+                {
+                    var _book_author = new BookAuthor()
+                    {
+                        IdBook = book.Id,
+                        IdAuthor = id
+                    };
+                    _context.BookAuthors.Add(_book_author);
+                    await _context.SaveChangesAsync();
+                }
                 return book.Id;
             }
 
@@ -187,6 +207,22 @@ namespace MicroserviceBook.Respositories
                 return list;
             }
 
+        }
+
+        public async Task<IEnumerable<GetBookVM>> GetBookByNameFilter(string? nameBook)
+        {
+            var res = String.IsNullOrEmpty(nameBook) ?
+                  await _context.Books.Where(p => p.IsDeleted == false).Select(p => p.Id).ToListAsync()
+                  : await _context.Books.Where(s => s.Name.ToLower().Contains(nameBook.Trim().ToLower()) && s.IsDeleted == false).Select(p => p.Id).ToListAsync();
+            if (res.Count == 0) return new List<GetBookVM>();
+            var books = new List<GetBookVM>();
+
+            foreach (var i in res)
+            {
+                var bookVM = await _service.GetBookById(i);
+                books.Add(bookVM);
+            }
+            return books;
         }
     }
 }

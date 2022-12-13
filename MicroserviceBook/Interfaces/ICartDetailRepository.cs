@@ -9,6 +9,7 @@ namespace MicroserviceBook.Interfaces
         public Task<int> CreateCartDetail(CartDetailDTO model);
         public Task<int> DeleteCartDetail(DeleteCartDTO model);
         public Task<int> ChangeQuantity(CartDetailDTO model);
+        public Task<int> DeleteAllAsync();
 
     }
 }

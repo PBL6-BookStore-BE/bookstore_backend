@@ -28,8 +28,9 @@ namespace MicroserviceBook.Controllers
             return Ok(await _repo.GetAuthor(id));
         }
         [HttpPost]
-        public async Task<IActionResult> CreateAuthor(CreateAuthorDTO model)
+        public async Task<IActionResult> CreateAuthor([FromForm] CreateAuthorDTO? model)
         {
+            model = model ?? throw new ArgumentNullException(nameof(model));
             return Ok(await _repo.CreateAuthor(model));
         }
         [HttpPut("{id}")]

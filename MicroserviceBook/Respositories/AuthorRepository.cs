@@ -27,6 +27,8 @@ namespace MicroserviceBook.Respositories
 
         public async Task<int> CreateAuthor(CreateAuthorDTO model)
         {
+            model.Description = model.Description ?? throw new ArgumentNullException(nameof(model));
+            model.Name = model.Name ?? throw new ArgumentNullException(nameof(model));
             var AuthorEntity = _mapper.Map<Author>(model);
             _context.Authors.Add(AuthorEntity);
             await _context.SaveChangesAsync();
@@ -97,6 +99,17 @@ namespace MicroserviceBook.Respositories
             }
             return author;
         }
+
+        public async Task<IEnumerable<GetAllAuthorsVM>> GetAuthorByNameFilter(string? name)
+        {
+
+            var res = String.IsNullOrEmpty(name) ?
+                await _context.Authors.Where(p => p.IsDeleted == false).ToListAsync()
+                : await _context.Authors.Where(s => s.Name.ToLower().Contains(name.Trim().ToLower()) && s.IsDeleted == false).ToListAsync();
+            if (res.Count == 0) return new List<GetAllAuthorsVM>();
+            return _mapper.Map<IEnumerable<GetAllAuthorsVM>>(res);
+        }
+
         public async Task<int> UpdateAuthor(UpdateAuthorDTO model)
         {
             var author = _context.Authors.FirstOrDefault(a => a.Id == model.Id);
