@@ -297,6 +297,18 @@
       "UpstreamPathTemplate": "/gateway/details",
       "UpstreamHttpMethod": [ "POST", "GET", "PUT", "DELETE" ]
     },
+    {
+      "DownstreamPathTemplate": "/api/cartdetail/all",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 6002
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/cart/all",
+      "UpstreamHttpMethod": [ "DELETE" ]
+    },
     //Tim kiem Book
 
     {

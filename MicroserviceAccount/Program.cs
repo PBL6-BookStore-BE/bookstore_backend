@@ -14,7 +14,14 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using MyEmailSender;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
+using Serilog.Sinks.Elasticsearch;
+using Serilog;
+using System.Reflection;
 using System.Text;
+using System.Reflection;
+using Serilog;
+using Serilog.Sinks.Elasticsearch;
+using Serilog.Exceptions;
 
 var builder = WebApplication.CreateBuilder(args);
 //Them Sentry vao Project
@@ -123,6 +130,10 @@ builder.Services.Configure<MyMailSettings>(builder.Configuration.GetSection("MyM
 builder.Services.Configure<EmailSender>(builder.Configuration.GetSection("EmailSender"));
 builder.Services.AddTransient<IMailService, MailService>();
 
+
+ConfigureLogging();
+builder.Host.UseSerilog();
+
 var app = builder.Build();
 
 //Them Sentry vao project
@@ -147,3 +158,36 @@ app.MapControllers();
 app.InitializeDb();
 
 app.Run();
+
+
+
+void ConfigureLogging()
+{
+    var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+    var configuration = new ConfigurationBuilder()
+        .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+        .AddJsonFile(
+            $"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")}.json",
+            optional: true)
+        .Build();
+
+    Log.Logger = new LoggerConfiguration()
+        .Enrich.FromLogContext()
+        .WriteTo.Debug()
+        .WriteTo.Console()
+        .Enrich.WithProperty("Environment", environment)
+        .ReadFrom.Configuration(configuration)
+        .Enrich.WithExceptionDetails()
+        .Enrich.WithMachineName()
+        .WriteTo.Sentry(o => o.Dsn = ("https://ccd187ee61bf40afbcd1dffc9b3f378a@o4504316779888640.ingest.sentry.io/4504316848177152"))
+        .CreateLogger();
+}
+
+ElasticsearchSinkOptions ConfigureElasticSink(IConfigurationRoot configuration, string environment)
+{
+    return new ElasticsearchSinkOptions(new Uri(configuration["ElasticConfiguration:Uri"]))
+    {
+        AutoRegisterTemplate = true,
+        IndexFormat = $"{Assembly.GetExecutingAssembly().GetName().Name.ToLower().Replace(".", "-")}-{environment?.ToLower().Replace(".", "-")}-{DateTime.UtcNow:yyyy-MM}"
+    };
+}

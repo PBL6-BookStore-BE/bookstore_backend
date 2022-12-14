@@ -20,5 +20,7 @@ namespace PBL6.BookStore.Models.DTOs.Book.BookDTO
         public int IdCategory { get; set; }
         public int IdPublisher { get; set; }
         public string Description { get; set; }
+        public IEnumerable<int> IdAuthors { get; set; }
+        public List<IFormFile>? list_img { get; set; } = null;
     }
 }
