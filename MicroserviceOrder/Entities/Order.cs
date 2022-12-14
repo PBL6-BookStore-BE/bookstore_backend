@@ -18,6 +18,7 @@ namespace PBL6.BookStore.Models.Entities.Order
         [ForeignKey("Payment")]
         public int IdPayment { get; set; }
         //public virtual User? User {get;set;}
+        public string? OrderAddress { get; set; }
         public virtual Payment? Payment { get; set; }
     }
 }

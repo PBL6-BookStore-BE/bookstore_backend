@@ -1,5 +1,6 @@
 ﻿using MicroserviceBook.DTOs.Publisher;
 using MicroserviceBook.Interfaces;
+using MicroserviceBook.ViewModels.PublisherVM;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -45,6 +46,22 @@ namespace MicroserviceBook.Controllers
         public async Task<IActionResult> DeletePublisher(int id)
         {
             return Ok(await _repo.DeletePublisher(id));
+        }
+        [HttpGet("search")]
+        public async Task<IActionResult> GetPublisherByName(string? name)
+        {
+            var list = await _repo.getPublisherByName(name);
+            var res = new List<GetPublisherVM>();
+            if (list.Count == 0)
+            {
+                return Ok(res);
+            }
+            foreach (var i in list)
+            {
+                var temp = await _repo.GetPublisherAsync(i);
+                res.Add(temp);
+            }
+            return Ok(res);
         }
     }
 }

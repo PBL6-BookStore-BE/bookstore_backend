@@ -41,7 +41,7 @@ namespace MicroserviceOrder.Repositories
                 {
                     var orderDetail = _mapper.Map<OrderDetail>(i);
                     orderDetail.IdOrder = OrderEntity.Id;
-                    _context.OrderDetails.Add(_mapper.Map<OrderDetail>(i));
+                    _context.OrderDetails.Add(orderDetail);
                 }
             }
             await _context.SaveChangesAsync();
@@ -99,6 +99,7 @@ namespace MicroserviceOrder.Repositories
             order.Status = model.Status;
             order.IdUser = model.IdUser;
             order.IdPayment = model.IdPayment;
+            order.OrderAddress = model.OrderAddress;
 
             foreach (var i in model.OrderDetails)
             {

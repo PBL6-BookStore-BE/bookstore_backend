@@ -49,5 +49,12 @@ namespace MicroserviceBook.Controllers
         {
             return Ok(await _repo.ChangeQuantity(model));
         }
+        [Authorize(AuthenticationSchemes = "Bearer")]
+        [HttpDelete("all")]
+        public async Task<IActionResult> DeleteCart()
+        {
+            return Ok(await _repo.DeleteAllAsync());
+        }
+
     }
 }

@@ -231,6 +231,18 @@
       "UpstreamPathTemplate": "/gateway/category/{id}",
       "UpstreamHttpMethod": [ "GET", "DELETE", "PUT" ]
     },
+    {
+      "DownstreamPathTemplate": "/api/category/search",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 6002
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/searchcategory",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
 
     //Gateway cho publisher
 
@@ -259,6 +271,18 @@
       "UpstreamPathTemplate": "/gateway/publisher/{id}",
       "UpstreamHttpMethod": [ "GET", "DELETE", "PUT" ]
     },
+    {
+      "DownstreamPathTemplate": "/api/publisher/search",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 6002
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/searchpublisher",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
 
     //Gateway cart detail
     {
@@ -273,7 +297,19 @@
       "UpstreamPathTemplate": "/gateway/details",
       "UpstreamHttpMethod": [ "POST", "GET", "PUT", "DELETE" ]
     },
-    //Tim kiem Book 
+    {
+      "DownstreamPathTemplate": "/api/cartdetail/all",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 6002
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/cart/all",
+      "UpstreamHttpMethod": [ "DELETE" ]
+    },
+    //Tim kiem Book
 
     {
       "DownstreamPathTemplate": "/api/book/search",
@@ -285,6 +321,18 @@
         }
       ],
       "UpstreamPathTemplate": "/gateway/searchbook",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/book/name",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 6002
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/searchbookbyname",
       "UpstreamHttpMethod": [ "GET" ]
     }
 

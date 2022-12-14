@@ -53,9 +53,12 @@ namespace MicroserviceBook.Controllers
 
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateBook([FromBody] UpdateBookDTO model)
+        public async Task<IActionResult> UpdateBook([FromForm] UpdateBookDTO? model)
         {
-            return Ok(await _repo.UpdateBook(model));
+            if (model != null) {
+                return Ok(await _repo.UpdateBook(model));
+            }
+            return BadRequest();
         }
 
         [HttpGet("search")]
@@ -66,6 +69,11 @@ namespace MicroserviceBook.Controllers
             var IdCates = await _categoryRepo.getCategoryByName(nameCate);
             
             return Ok(await _repo.Searchbook(lowest,highest,IdCates,IdPubs));
+        }
+        [HttpGet("name")]
+        public async Task<IActionResult> GetBookByName(string? nameBook)
+        {
+            return Ok(await _repo.GetBookByNameFilter(nameBook));
         }
     }
 }

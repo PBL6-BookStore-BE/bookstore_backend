@@ -158,7 +158,29 @@ namespace MicroserviceBook.Respositories
             }
            
         }
+        public async Task<int> DeleteAllAsync()
+        {
+            var id_user = _userService.Id;
+            var id_cart = await _context.Carts.Where(c => c.IdUser == id_user).Select(c => c.Id).FirstOrDefaultAsync();
+            if (id_cart != 0)
+            {
+                var items = await _context.CartDetails.Where(i => (i.IdCart == id_cart) && (i.IsDeleted == false)).ToListAsync();
+                if (items.Count != 0)
+                {
+                    foreach (var item in items)
+                    {
+                        item.IsDeleted = true;
+                        item.DeletedDate = DateTime.Now;
+                    }
 
-        
+                    await _context.SaveChangesAsync();
+
+                }
+
+            }
+            return id_cart;
+        }
+
+
     }
 }
