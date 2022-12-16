@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "b/SxE6ycaPBqcuTaPvxshB8WqQ+Ed0o/QGq7JbbJm3i7tVj+hm+OIZ/yix8guhkrZx27IHkd72aLaAHL6Keu7w==",
+  "dgSpecHash": "mnMuv2e2EmLCft5bDyhOvhKt/NINVjJADNbt9QQhHLX47FmAdzjbEhsJx+sGbK7EqyLOKaS7J9ltbj3/Pbzvyg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\linh-vostro\\Downloads\\bookstore_backend\\bookstore_backend\\Gateway.WebApi\\Gateway.WebApi.csproj",
+  "projectFilePath": "D:\\bookstore_backend\\Gateway.WebApi\\Gateway.WebApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\linh-vostro\\.nuget\\packages\\fluentvalidation\\10.3.6\\fluentvalidation.10.3.6.nupkg.sha512",
     "C:\\Users\\linh-vostro\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.9\\microsoft.aspnetcore.authentication.jwtbearer.6.0.9.nupkg.sha512",
@@ -10,8 +10,10 @@
     "C:\\Users\\linh-vostro\\.nuget\\packages\\microsoft.aspnetcore.middlewareanalysis\\6.0.1\\microsoft.aspnetcore.middlewareanalysis.6.0.1.nupkg.sha512",
     "C:\\Users\\linh-vostro\\.nuget\\packages\\microsoft.aspnetcore.mvc.newtonsoftjson\\6.0.1\\microsoft.aspnetcore.mvc.newtonsoftjson.6.0.1.nupkg.sha512",
     "C:\\Users\\linh-vostro\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
+    "C:\\Users\\linh-vostro\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\2.0.0\\microsoft.extensions.configuration.abstractions.2.0.0.nupkg.sha512",
     "C:\\Users\\linh-vostro\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\6.0.0\\microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
     "C:\\Users\\linh-vostro\\.nuget\\packages\\microsoft.extensions.diagnosticadapter\\3.1.22\\microsoft.extensions.diagnosticadapter.3.1.22.nupkg.sha512",
+    "C:\\Users\\linh-vostro\\.nuget\\packages\\microsoft.extensions.primitives\\2.0.0\\microsoft.extensions.primitives.2.0.0.nupkg.sha512",
     "C:\\Users\\linh-vostro\\.nuget\\packages\\microsoft.identitymodel.jsonwebtokens\\6.10.0\\microsoft.identitymodel.jsonwebtokens.6.10.0.nupkg.sha512",
     "C:\\Users\\linh-vostro\\.nuget\\packages\\microsoft.identitymodel.logging\\6.10.0\\microsoft.identitymodel.logging.6.10.0.nupkg.sha512",
     "C:\\Users\\linh-vostro\\.nuget\\packages\\microsoft.identitymodel.protocols\\6.10.0\\microsoft.identitymodel.protocols.6.10.0.nupkg.sha512",
@@ -20,8 +22,12 @@
     "C:\\Users\\linh-vostro\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\linh-vostro\\.nuget\\packages\\newtonsoft.json.bson\\1.0.2\\newtonsoft.json.bson.1.0.2.nupkg.sha512",
     "C:\\Users\\linh-vostro\\.nuget\\packages\\ocelot\\18.0.0\\ocelot.18.0.0.nupkg.sha512",
+    "C:\\Users\\linh-vostro\\.nuget\\packages\\serilog\\2.10.0\\serilog.2.10.0.nupkg.sha512",
+    "C:\\Users\\linh-vostro\\.nuget\\packages\\serilog.sinks.file\\5.0.0\\serilog.sinks.file.5.0.0.nupkg.sha512",
+    "C:\\Users\\linh-vostro\\.nuget\\packages\\serilog.sinks.http\\8.0.0\\serilog.sinks.http.8.0.0.nupkg.sha512",
     "C:\\Users\\linh-vostro\\.nuget\\packages\\system.diagnostics.diagnosticsource\\4.7.1\\system.diagnostics.diagnosticsource.4.7.1.nupkg.sha512",
     "C:\\Users\\linh-vostro\\.nuget\\packages\\system.identitymodel.tokens.jwt\\6.10.0\\system.identitymodel.tokens.jwt.6.10.0.nupkg.sha512",
+    "C:\\Users\\linh-vostro\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.4.0\\system.runtime.compilerservices.unsafe.4.4.0.nupkg.sha512",
     "C:\\Users\\linh-vostro\\.nuget\\packages\\system.security.cryptography.cng\\4.5.0\\system.security.cryptography.cng.4.5.0.nupkg.sha512"
   ],
   "logs": [

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\linh-vostro\\Downloads\\bookstore_backend\\bookstore_backend\\Gateway.WebApi\\Gateway.WebApi.csproj": {}
+    "D:\\bookstore_backend\\Gateway.WebApi\\Gateway.WebApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\linh-vostro\\Downloads\\bookstore_backend\\bookstore_backend\\Gateway.WebApi\\Gateway.WebApi.csproj": {
+    "D:\\bookstore_backend\\Gateway.WebApi\\Gateway.WebApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\linh-vostro\\Downloads\\bookstore_backend\\bookstore_backend\\Gateway.WebApi\\Gateway.WebApi.csproj",
+        "projectUniqueName": "D:\\bookstore_backend\\Gateway.WebApi\\Gateway.WebApi.csproj",
         "projectName": "Gateway.WebApi",
-        "projectPath": "C:\\Users\\linh-vostro\\Downloads\\bookstore_backend\\bookstore_backend\\Gateway.WebApi\\Gateway.WebApi.csproj",
+        "projectPath": "D:\\bookstore_backend\\Gateway.WebApi\\Gateway.WebApi.csproj",
         "packagesPath": "C:\\Users\\linh-vostro\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\linh-vostro\\Downloads\\bookstore_backend\\bookstore_backend\\Gateway.WebApi\\obj\\",
+        "outputPath": "D:\\bookstore_backend\\Gateway.WebApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\linh-vostro\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -48,6 +48,10 @@
             "Ocelot": {
               "target": "Package",
               "version": "[18.0.0, )"
+            },
+            "Serilog.Sinks.Http": {
+              "target": "Package",
+              "version": "[8.0.0, )"
             }
           },
           "imports": [
@@ -69,7 +73,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }
