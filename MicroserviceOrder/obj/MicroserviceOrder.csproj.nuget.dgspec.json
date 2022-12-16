@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\linh-vostro\\Downloads\\bookstore_backend\\bookstore_backend\\MicroserviceOrder\\MicroserviceOrder.csproj": {}
+    "D:\\bookstore_backend\\MicroserviceOrder\\MicroserviceOrder.csproj": {}
   },
   "projects": {
-    "C:\\Users\\linh-vostro\\Downloads\\bookstore_backend\\bookstore_backend\\MicroserviceOrder\\MicroserviceOrder.csproj": {
+    "D:\\bookstore_backend\\MicroserviceOrder\\MicroserviceOrder.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\linh-vostro\\Downloads\\bookstore_backend\\bookstore_backend\\MicroserviceOrder\\MicroserviceOrder.csproj",
+        "projectUniqueName": "D:\\bookstore_backend\\MicroserviceOrder\\MicroserviceOrder.csproj",
         "projectName": "MicroserviceOrder",
-        "projectPath": "C:\\Users\\linh-vostro\\Downloads\\bookstore_backend\\bookstore_backend\\MicroserviceOrder\\MicroserviceOrder.csproj",
+        "projectPath": "D:\\bookstore_backend\\MicroserviceOrder\\MicroserviceOrder.csproj",
         "packagesPath": "C:\\Users\\linh-vostro\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\linh-vostro\\Downloads\\bookstore_backend\\bookstore_backend\\MicroserviceOrder\\obj\\",
+        "outputPath": "D:\\bookstore_backend\\MicroserviceOrder\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\linh-vostro\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -71,6 +71,38 @@
               "target": "Package",
               "version": "[6.0.2, )"
             },
+            "Sentry.AspNetCore": {
+              "target": "Package",
+              "version": "[3.24.0, )"
+            },
+            "Sentry.Serilog": {
+              "target": "Package",
+              "version": "[3.24.0, )"
+            },
+            "Serilog.AspNetCore": {
+              "target": "Package",
+              "version": "[6.1.0, )"
+            },
+            "Serilog.Enrichers.Environment": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Serilog.Exceptions": {
+              "target": "Package",
+              "version": "[8.4.0, )"
+            },
+            "Serilog.Sinks.Debug": {
+              "target": "Package",
+              "version": "[2.0.0, )"
+            },
+            "Serilog.Sinks.Elasticsearch": {
+              "target": "Package",
+              "version": "[8.4.1, )"
+            },
+            "Serilog.Sinks.Http": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.2.3, )"
@@ -95,7 +127,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }
