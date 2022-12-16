@@ -61,7 +61,7 @@ namespace MicroserviceBook.Respositories
                     IdCategory = model.IdCategory,
                     IdPublisher = model.IdPublisher,
                     Description = model.Description,
-                    UrlImage = _picService.UploadFile(model.list_img)
+                    UrlImage = await _picService.UploadFile(model.list_img)
 
             };
                 _context.Books.Add(book);
@@ -75,8 +75,9 @@ namespace MicroserviceBook.Respositories
                         IdAuthor = id
                     };
                     _context.BookAuthors.Add(_book_author);
-                    await _context.SaveChangesAsync();
+                    
                 }
+                await _context.SaveChangesAsync();
                 await dbContextTransaction.CommitAsync();
                 await dbContextTransaction.DisposeAsync();
                 return book.Id;
@@ -100,7 +101,7 @@ namespace MicroserviceBook.Respositories
 
         public async Task<int> UpdateBook(UpdateBookDTO model)
         {
-            var book = await _context.Books.Where(b => b.Id == model.Id).SingleOrDefaultAsync();
+            var book = await _context.Books.Where(b => b.Id == model.Id && b.IsDeleted == false).SingleOrDefaultAsync();
             if (book == null)
             {
                 return 0;
@@ -115,10 +116,10 @@ namespace MicroserviceBook.Respositories
                 book.IdPublisher = model.IdPublisher;
                 book.Description = model.Description;
                 if (model.list_img != null)
-                    book.UrlImage = _picService.UploadFile(model.list_img);
+                    book.UrlImage = await _picService.UploadFile(model.list_img);
                 await _context.SaveChangesAsync();
 
-                var temp_authors = await _context.BookAuthors.Where(ba => ba.IdBook == book.Id).ToListAsync();
+                var temp_authors = await _context.BookAuthors.Where(ba => ba.IdBook == book.Id && ba.IsDeleted == false).ToListAsync();
                 foreach (var author in temp_authors)
                 {
                     author.IsDeleted = true;
@@ -141,7 +142,7 @@ namespace MicroserviceBook.Respositories
 
         public async Task<int> DeleteBook(int id)
         {
-            var book = await _context.Books.Where(b => b.Id == id).SingleOrDefaultAsync();
+            var book = await _context.Books.Where(b => b.Id == id && b.IsDeleted == false).SingleOrDefaultAsync();
 
             if (book == null)
             {
@@ -160,7 +161,7 @@ namespace MicroserviceBook.Respositories
 
         public async Task<IEnumerable<GetBookVM>> Top10ByRating()
         {
-            var list = await _context.Books.OrderByDescending(b => b.Rating).Take(10).ToListAsync();
+            var list = await _context.Books.Where(b => b.IsDeleted == false).OrderByDescending(b => b.Rating).Take(10).ToListAsync();
             var result = new List<GetBookVM>();
 
             foreach (var i in list)

@@ -7,6 +7,7 @@ using MicroserviceBook.Service;
 using MicroserviceBook.Services;
 using MicroserviceBook.ViewModels.AuthorVM;
 using MicroserviceBook.ViewModels.BookVM;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 
 namespace MicroserviceBook.Respositories
@@ -24,7 +25,7 @@ namespace MicroserviceBook.Respositories
             _service = service;
             _userService = userService;
         }
-
+        //[Authorize(Roles = "Administrator", AuthenticationSchemes = "Bearer")]
         public async Task<int> CreateAuthor(CreateAuthorDTO model)
         {
             model.Description = model.Description ?? throw new ArgumentNullException(nameof(model));
@@ -34,10 +35,10 @@ namespace MicroserviceBook.Respositories
             await _context.SaveChangesAsync();
             return AuthorEntity.Id;
         }
-
+        //[Authorize(Roles = "Administrator", AuthenticationSchemes = "Bearer")]
         public async Task<int> DeleteAuthor(int id)
         {
-            var author = _context.Authors.FirstOrDefault(x => x.Id == id);
+            var author = _context.Authors.FirstOrDefault(x => x.Id == id && x.IsDeleted == false);
             if (author == null)
             {
                 return default;
@@ -64,40 +65,11 @@ namespace MicroserviceBook.Respositories
                                  }).ToListAsync();
             return authors.AsReadOnly();
         }
-        public async Task<GetAuthorVM> GetAuthor(int id)
+        public async Task<GetAllAuthorsVM> GetAuthor(int id)
         {
-            var author = await _context.Authors.Where(a => a.Id == id).Select(
-               a => new GetAuthorVM
-               {
-                   Id = a.Id,
-                   Name = a.Name,
-                   Description = a.Description,
-                   BookIds = (from author in _context.Authors
-                            join
-                             ba in _context.BookAuthors
-                             on author.Id equals ba.IdAuthor
-                            where author.Id == id
-                            select ba.IdBook
-                            ).ToList()
-               }).SingleOrDefaultAsync();
+            var author = await _context.Authors.Where(a => a.Id == id && a.IsDeleted == false).FirstOrDefaultAsync();
             if (author == null) return default;
-            else
-            {
-                if (author.BookIds == null)
-                {
-                    author.Books = null;
-                }
-                else
-                {
-                    var temp_list = new List<GetBookVM>();
-                    foreach (var item in author.BookIds)
-                    {
-                        temp_list.Add(await _service.GetBookById(item));
-                    }
-                    author.Books = temp_list;
-                }
-            }
-            return author;
+            return _mapper.Map<GetAllAuthorsVM>(author);
         }
 
         public async Task<IEnumerable<GetAllAuthorsVM>> GetAuthorByNameFilter(string? name)
@@ -109,10 +81,10 @@ namespace MicroserviceBook.Respositories
             if (res.Count == 0) return new List<GetAllAuthorsVM>();
             return _mapper.Map<IEnumerable<GetAllAuthorsVM>>(res);
         }
-
+        
         public async Task<int> UpdateAuthor(UpdateAuthorDTO model)
         {
-            var author = _context.Authors.FirstOrDefault(a => a.Id == model.Id);
+            var author = _context.Authors.FirstOrDefault(a => a.Id == model.Id && a.IsDeleted ==false);
             if (author == null)
             {
                 return default;

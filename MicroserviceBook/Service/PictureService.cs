@@ -5,8 +5,9 @@ namespace MicroserviceBook.Service
 {
     public class PictureService : IPictureService
     {
-        public IEnumerable<string> GetUrls(string url_folder)
+        public async Task<IEnumerable<string>> GetUrls(string url_folder)
         {
+            string exp = "folder=" + url_folder;
             var list_url = new List<string>();
             Account account = new Account(
                   "dgs9vyh4n",
@@ -17,12 +18,26 @@ namespace MicroserviceBook.Service
             cloudinary.Api.Secure = true;
 
             //var result = cloudinary.ListResources();
-            SearchResult result = cloudinary.Search()
-                .Expression(url_folder)
-                .WithField("context")
-                .WithField("tags")
-                .MaxResults(10)
-                .Execute();
+            SearchResult result = await cloudinary.Search()
+                .Expression(exp)
+                //.WithField("context")
+                //.WithField("tags")
+                .MaxResults(4)
+                .ExecuteAsync();
+            //var r = cloudinary.ListResourcesByAssetFolder(url);
+            string s = "b8b7e61e-d1c9-4d00-944d-b81ea97fabc9";
+
+            //var result = await cloudinary.ListResourceByAssetFolderAsync(s, false,false,false);
+            //var result = await cloudinary.ListResourcesByAssetFolder
+
+           
+
+            //var listResourcesByPrefixParams = new ListResourcesByPrefixParams()
+            //{
+            //    Type = "upload",
+            //    Prefix = "7cadf3cd-580e-4dda-9ee2-14391eb62e94"
+            //};
+            //var listResourcesResult = cloudinary.ListResources(listResourcesByPrefixParams);
 
             var k = result.Resources;
 
@@ -33,7 +48,7 @@ namespace MicroserviceBook.Service
             return list_url;
         }
 
-        public string UploadFile(List<IFormFile> list_img)
+        public async Task<string> UploadFile(List<IFormFile> list_img)
         {
             Account account = new Account(
                      "dgs9vyh4n",
@@ -45,16 +60,17 @@ namespace MicroserviceBook.Service
 
             var guiID = Guid.NewGuid();
             string rootFolder = "book/" + guiID;
-            string temp = "";
+      
             foreach (var img in list_img)
             {
-                temp = rootFolder + Path.GetFileNameWithoutExtension(img.FileName);
                 var uploadParams = new ImageUploadParams()
                 {
                     File = new FileDescription(img.FileName, img.OpenReadStream()),
-                    PublicId = temp
-                };
-                var uploadResult = cloudinary.Upload(uploadParams);
+                    PublicId = Path.GetFileNameWithoutExtension(img.FileName),
+                    Folder = rootFolder,
+                    AssetFolder = guiID.ToString(),
+              };
+                var uploadResult = await cloudinary.UploadAsync(uploadParams);
             }
             return rootFolder;
         }

@@ -37,10 +37,6 @@ namespace MicroserviceBook.Controllers
             return Ok(await _repo.CreateReview(model));
         }
 
-
-
-
-        [Authorize(AuthenticationSchemes = "Bearer")]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetReview(int id)
         {
@@ -56,7 +52,7 @@ namespace MicroserviceBook.Controllers
             return Ok(await _repo.DeleteReview(id));
         }
 
-
+        [Authorize(AuthenticationSchemes = "Bearer")]
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateReview([FromBody] UpdateReviewDTO model)
         {

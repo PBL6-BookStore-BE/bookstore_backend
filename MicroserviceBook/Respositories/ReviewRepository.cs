@@ -55,7 +55,7 @@ namespace MicroserviceBook.Respositories
                 _context.Reviews.Add(review);
                 await _context.SaveChangesAsync();
 
-                var book = await _context.Books.FirstOrDefaultAsync(b => b.Id == review.IdBook);
+                var book = await _context.Books.FirstOrDefaultAsync(b => b.Id == review.IdBook && b.IsDeleted == false);
 
                 decimal sum_rating = _context.Reviews.Where(r => r.IdBook == book.Id).Sum(r => r.Rating);
                 int count_review = _context.Reviews.Where(r => r.IdBook == book.Id).Count();
