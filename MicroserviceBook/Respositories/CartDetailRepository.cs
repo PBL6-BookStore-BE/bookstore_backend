@@ -58,9 +58,11 @@ namespace MicroserviceBook.Respositories
 
             var id_user = _userService.Id;
             var id_cart = await _context.Carts.Where(c => c.IdUser == id_user).Select(c => c.Id).FirstOrDefaultAsync();
-            if (id_cart!= 0)
+            if (id_cart == 0)
             {
- 
+                id_cart = await _cartRepository.CreateCart();
+
+            }
                 var item = await _context.CartDetails.Where(i => (i.IdCart == id_cart) && (i.IdBook == model.IdBook) && (i.IsDeleted == false)).FirstOrDefaultAsync();
                 if (item == null)
                 {
@@ -78,29 +80,8 @@ namespace MicroserviceBook.Respositories
                     return item.Id;
                 }
 
-            }
-            else
-            {
-                var  id_newcart = await _cartRepository.CreateCart();
-                var item = await _context.CartDetails.Where(i => (i.IdCart == id_cart) && (i.IdBook == model.IdBook) && (i.IsDeleted == false)).FirstOrDefaultAsync();
-                if (item == null)
-                {
-                    var cart = _mapper.Map<CartDetail>(model);
-                    cart.IdCart = id_newcart;
-                    _context.CartDetails.Add(cart);
-                    await _context.SaveChangesAsync();
-                    return cart.Id;
 
-                }
-                else
-                {
-                    item.Quantity += model.Quantity;
-                    await _context.SaveChangesAsync();
-                    return item.Id;
-                }
-
-
-            }
+            
           
         }
 

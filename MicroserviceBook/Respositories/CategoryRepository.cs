@@ -32,7 +32,7 @@ namespace MicroserviceBook.Respositories
 
         public async Task<int> DeleteCategory(int id)
         {
-            var CategoryEntity = await _context.Categories.FirstOrDefaultAsync(c => c.Id == id);
+            var CategoryEntity = await _context.Categories.FirstOrDefaultAsync(c => c.Id == id && c.IsDeleted == false);
             if (CategoryEntity == null)
             {
                 return -1;
@@ -55,7 +55,8 @@ namespace MicroserviceBook.Respositories
 
         public async Task<GetCategoryVM> GetCategory(int id)
         {
-            var category = await _context.Categories.Where(i => i.Id == id).FirstOrDefaultAsync();
+            var category = await _context.Categories.Where(i => i.Id == id && i.IsDeleted == false).FirstOrDefaultAsync();
+            if (category == null) return default;
             var result = _mapper.Map<GetCategoryVM>(category);
             return result;
         }
@@ -73,7 +74,7 @@ namespace MicroserviceBook.Respositories
             if (model == null)
                 return -1;
 
-            var category = await _context.Categories.Where(i => i.Id == model.Id).FirstOrDefaultAsync();
+            var category = await _context.Categories.Where(i => i.Id == model.Id && i.IsDeleted == false).FirstOrDefaultAsync();
             if (category == null)
                 return -1;
             category.Name = model.Name;

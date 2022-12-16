@@ -1,5 +1,6 @@
 ﻿using MicroserviceBook.DTOs.Book;
 using MicroserviceBook.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PBL6.BookStore.Models.DTOs.Book.BookDTO;
 
@@ -24,7 +25,7 @@ namespace MicroserviceBook.Controllers
         {
             return Ok(await _repo.GetAllBooks());
         }
-
+        [Authorize(Roles = "Administrator", AuthenticationSchemes = "Bearer")]
         [HttpPost]
         public async Task<IActionResult> CreateBook([FromForm] BookWithAuthorsDTO model)
         {
@@ -34,6 +35,8 @@ namespace MicroserviceBook.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetBook(int id)
         {
+            var res = await _repo.GetBook(id);
+            if (res == null) return NotFound();
             return Ok(await _repo.GetBook(id));
         }
 
@@ -44,14 +47,14 @@ namespace MicroserviceBook.Controllers
             return Ok(await _repo.Top10ByRating());
         }
 
-
+        [Authorize(Roles = "Administrator", AuthenticationSchemes = "Bearer")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteBook(int id)
         {
             return Ok(await _repo.DeleteBook(id));
         }
 
-
+        [Authorize(Roles = "Administrator", AuthenticationSchemes = "Bearer")]
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateBook([FromForm] UpdateBookDTO? model)
         {

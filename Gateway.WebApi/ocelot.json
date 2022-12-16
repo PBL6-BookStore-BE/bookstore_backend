@@ -201,7 +201,18 @@
       "UpstreamPathTemplate": "/gateway/author/{id}",
       "UpstreamHttpMethod": [ "GET", "DELETE", "PUT" ]
     },
-
+    {
+      "DownstreamPathTemplate": "/api/author/search",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 6002
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/searchauthor",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
 
 
     //Gateway cho category

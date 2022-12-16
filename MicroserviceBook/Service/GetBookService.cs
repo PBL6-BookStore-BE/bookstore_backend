@@ -41,13 +41,13 @@ namespace MicroserviceBook.Service
                                   Authors = (from ba in _context.BookAuthors
                                              join a in _context.Authors
                                              on ba.IdAuthor equals a.Id
-                                             where ba.IdBook == id
+                                             where (ba.IdBook == id && ba.IsDeleted == false)
                                              select a.Name).ToList()
                               }
                            ).SingleOrDefaultAsync();
             if (book != null)
             {
-                book.Urls = _service.GetUrls(book.UrlFolder);
+                book.Urls = await _service.GetUrls(book.UrlFolder);
                 return book;
             }
             else return default;

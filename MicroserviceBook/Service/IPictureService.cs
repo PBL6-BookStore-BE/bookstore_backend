@@ -2,7 +2,7 @@
 {
     public interface IPictureService
     {
-        public string UploadFile(List<IFormFile> list_img);
-        public IEnumerable<string> GetUrls(string url_folder);
+        public Task<string> UploadFile(List<IFormFile> list_img);
+        public Task<IEnumerable<string>> GetUrls(string url_folder);
     }
 }

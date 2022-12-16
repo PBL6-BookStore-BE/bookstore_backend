@@ -16,7 +16,7 @@ namespace MicroserviceBook.Controllers
         {
             _repo = repo;
         }
-        //[Authorize(AuthenticationSchemes = "Bearer")]
+     
         [HttpGet]
         public async Task<IActionResult> GetAllAuthors()
         {
@@ -25,19 +25,24 @@ namespace MicroserviceBook.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetAuthor(int id)
         {
-            return Ok(await _repo.GetAuthor(id));
+            var res = await _repo.GetAuthor(id);
+            if (res == null) return NotFound();
+            return Ok(res);
         }
+        [Authorize(Roles = "Administrator", AuthenticationSchemes = "Bearer")]
         [HttpPost]
         public async Task<IActionResult> CreateAuthor([FromForm] CreateAuthorDTO? model)
         {
             model = model ?? throw new ArgumentNullException(nameof(model));
             return Ok(await _repo.CreateAuthor(model));
         }
+        [Authorize(Roles = "Administrator", AuthenticationSchemes = "Bearer")]
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateAuthor([FromBody] UpdateAuthorDTO model)
         {
             return Ok(await _repo.UpdateAuthor(model));
         }
+        [Authorize(Roles = "Administrator", AuthenticationSchemes = "Bearer")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAuthor(int id)
         {
