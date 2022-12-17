@@ -38,6 +38,7 @@ namespace MicroserviceBook.Service
                                   CategoryName = c.Name,
                                   PublicationDate = b.PublicationDate,
                                   PublisherName = p.Name,
+                                  Description = b.Description,
                                   Authors = (from ba in _context.BookAuthors
                                              join a in _context.Authors
                                              on ba.IdAuthor equals a.Id
