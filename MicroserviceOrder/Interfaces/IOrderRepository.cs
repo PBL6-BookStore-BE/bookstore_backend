@@ -12,6 +12,7 @@ namespace MicroserviceOrder.Interfaces
 
         public Task<int> UpdateOrder(UpdateOrderDTO model);
         public Task<int> DeleteOrder(int id);
+        public Task<bool> ChangeStatus(int id, bool status);
         
     }
 }

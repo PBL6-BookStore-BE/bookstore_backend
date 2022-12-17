@@ -90,9 +90,6 @@ namespace MicroserviceOrder.Repositories
 
         public async Task<int> UpdateOrder(UpdateOrderDTO model)
         {
-            throw new NotImplementedException();
-            if (model == null)
-                return -1;
             var order = await _context.Orders.FirstOrDefaultAsync(c => c.Id == model.Id);
             if (order == null)
                 return -1;
@@ -102,6 +99,7 @@ namespace MicroserviceOrder.Repositories
             order.OrderAddress = model.OrderAddress;
             order.ReceiverName = model.ReceiverName;
             order.Number = model.Number;
+            order.Total = model.Total;
 
             foreach (var i in model.OrderDetails)
             {
@@ -118,6 +116,15 @@ namespace MicroserviceOrder.Repositories
             await _context.SaveChangesAsync();
             return order.Id;
             
+        }
+        public async Task<bool> ChangeStatus(int id, bool status)
+        {
+            var order = await _context.Orders.FirstOrDefaultAsync(c => c.Id == id);
+            if (order == null)
+                return false;
+            order.Status = status;
+            await _context.SaveChangesAsync();
+            return order.Status;
         }
     }
 }

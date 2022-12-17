@@ -11,6 +11,7 @@ namespace MicroserviceOrder.ViewModels.OrderVM
         public string? OrderAddress { get; set; }
         public string? ReceiverName { get; set; }
         public string? Number { get; set; }
+        public string? Total { get; set; }
         public IEnumerable<GetOrderDetailVM>? OrderDetails { get; set; }
     }
 }
