@@ -45,5 +45,11 @@ namespace MicroserviceOrder.Controllers
         {
             return Ok(await _repository.UpdateOrder(model));
         }
+        [Authorize(AuthenticationSchemes = "Bearer")]
+        [HttpPost("changeStatus")]
+        public async Task<IActionResult> ChangeStatus(ChangeOrderStatusDTO model)
+        {
+            return Ok(await _repository.ChangeStatus(model.Id, model.Status));
+        }
     }
 }
