@@ -1,6 +1,7 @@
 ﻿using MicroserviceBook.DTOs.Publisher;
 using MicroserviceBook.Interfaces;
 using MicroserviceBook.ViewModels.PublisherVM;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -27,21 +28,26 @@ namespace MicroserviceBook.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetPublisher(int id)
         {
-            return Ok(await _repo.GetPublisherAsync(id));
+            var result = await _repo.GetPublisherAsync(id);
+            if (result != null)
+            {
+                return Ok(await _repo.GetPublisherAsync(id));
+            }
+            return NotFound();
         }
-
+        [Authorize(Roles = "Administrator", AuthenticationSchemes = "Bearer")]
         [HttpPost]
         public async Task<IActionResult> CreatePublisher(CreatePublisherDTO model)
         {
             return Ok(await _repo.CreatePublisher(model));
         }
-
+        [Authorize(Roles = "Administrator", AuthenticationSchemes = "Bearer")]
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdatePublisher([FromBody] UpdatePublisherDTO model)
         {
             return Ok(await _repo.UpdatePublisher(model));
         }
-
+        [Authorize(Roles = "Administrator", AuthenticationSchemes = "Bearer")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeletePublisher(int id)
         {
@@ -52,14 +58,13 @@ namespace MicroserviceBook.Controllers
         {
             var list = await _repo.getPublisherByName(name);
             var res = new List<GetPublisherVM>();
-            if (list.Count == 0)
+            if (list.Count != 0)
             {
-                return Ok(res);
-            }
-            foreach (var i in list)
-            {
-                var temp = await _repo.GetPublisherAsync(i);
-                res.Add(temp);
+                foreach (var i in list)
+                {
+                    var temp = await _repo.GetPublisherAsync(i);
+                    res.Add(temp);
+                }
             }
             return Ok(res);
         }

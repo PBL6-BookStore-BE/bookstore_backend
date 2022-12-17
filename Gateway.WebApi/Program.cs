@@ -6,6 +6,12 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 //builder.Services.AddRazorPages();
 
+builder.Services.AddCors(o =>
+                o.AddPolicy("CorsPolicy", builder => builder
+                    .WithOrigins("http://localhost:3000", "http://localhost:3001")
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()));
+
 builder.Services.AddOcelot();
 builder.Configuration.AddJsonFile("ocelot.json");
 
@@ -18,7 +24,7 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
-
+app.UseCors("CorsPolicy");
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 

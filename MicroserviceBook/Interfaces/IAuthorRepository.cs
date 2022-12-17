@@ -6,7 +6,7 @@ namespace MicroserviceBook.Interfaces
     public interface IAuthorRepository
     {
         public Task<IEnumerable<GetAllAuthorsVM>> GetAllAuthors();
-        public Task<GetAuthorVM> GetAuthor(int id);
+        public Task<GetAllAuthorsVM> GetAuthor(int id);
 
         public Task<int> CreateAuthor(CreateAuthorDTO model);
 

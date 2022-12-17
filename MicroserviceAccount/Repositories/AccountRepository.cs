@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using MicroserviceAccount.Constants;
+﻿using MicroserviceAccount.Constants;
 using MicroserviceAccount.Data;
 using MicroserviceAccount.DTOs;
 using MicroserviceAccount.Entities;
@@ -68,12 +67,12 @@ namespace MicroserviceAccount.Repositories
             var authenticationModel = new AuthenticationVM();
             var user = new User
             {
-                FullName = model.Username,
+                FullName = model.FullName,
                 UserName = model.Username,
                 Email = model.Email,
                 CreatedOn = DateTime.Now,
-                Address = model.Username,
-                PhoneNumber = model.Username,
+                Address = model.Address,
+                PhoneNumber = model.PhoneNumber,
                 IsActive = true
             };
             var userWithSameEmail = await _userManager.FindByEmailAsync(model.Email);
@@ -264,6 +263,7 @@ namespace MicroserviceAccount.Repositories
             return list.AsReadOnly();
         }
 
+
         public async Task<GetUserVM> GetUserByEmail(string email)
         {
             var user = await (from u in _context.Users
@@ -277,6 +277,5 @@ namespace MicroserviceAccount.Repositories
                               }).FirstOrDefaultAsync();
             return user;
         }
-
     }
 }

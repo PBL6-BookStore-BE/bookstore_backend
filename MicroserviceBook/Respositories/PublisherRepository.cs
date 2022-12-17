@@ -32,12 +32,15 @@ using MicroserviceBook.ViewModels.BookVM;
         
         public async Task<GetPublisherVM> GetPublisherAsync(int id)
         {
-            var publisher = await _context.Publishers.Where(p => p.Id == id).FirstOrDefaultAsync();
-
+            var publisher = await _context.Publishers.Where(p => p.Id == id  && p.IsDeleted == false).FirstOrDefaultAsync();
+            if (publisher != null)
+        {
             var mapperPublisher = _mapper.Map<GetPublisherVM>(publisher);
             return mapperPublisher;
 
         }
+        return default;
+    }
         public async Task<int> CreatePublisher(CreatePublisherDTO model)
         {
             var _mapperPublisher = _mapper.Map<Publisher>(model);
@@ -50,7 +53,7 @@ using MicroserviceBook.ViewModels.BookVM;
 
         public async Task<int> DeletePublisher(int id)
         {
-            var publisher = await _context.Publishers.FirstOrDefaultAsync(p => p.Id == id);
+            var publisher = await _context.Publishers.FirstOrDefaultAsync(p => p.Id == id && p.IsDeleted == false);
             if (publisher == null)
             {
                 return default;
@@ -66,7 +69,7 @@ using MicroserviceBook.ViewModels.BookVM;
 
         public async Task<int> UpdatePublisher(UpdatePublisherDTO model)
         {
-            var publisher = await _context.Publishers.FirstOrDefaultAsync(p => p.Id == model.Id);
+            var publisher = await _context.Publishers.FirstOrDefaultAsync(p => p.Id == model.Id  && p.IsDeleted == false);
             if (publisher == null)
             {
                 return default;
