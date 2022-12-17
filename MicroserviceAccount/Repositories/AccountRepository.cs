@@ -264,5 +264,19 @@ namespace MicroserviceAccount.Repositories
             return list.AsReadOnly();
         }
 
+        public async Task<GetUserVM> GetUserByEmail(string email)
+        {
+            var user = await (from u in _context.Users
+                              where u.Email == email
+                              select new GetUserVM
+                              {
+                                  FullName = u.FullName,
+                                  Email = u.Email,
+                                  Address = u.Address,
+                                  PhoneNumber = u.PhoneNumber,
+                              }).FirstOrDefaultAsync();
+            return user;
+        }
+
     }
 }
