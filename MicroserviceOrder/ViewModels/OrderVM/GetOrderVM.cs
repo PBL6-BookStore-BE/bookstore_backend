@@ -9,6 +9,8 @@ namespace MicroserviceOrder.ViewModels.OrderVM
         public string IdUser { get; set; }
         public string Payment { get; set; }
         public string? OrderAddress { get; set; }
+        public string? ReceiverName { get; set; }
+        public string? Number { get; set; }
         public IEnumerable<GetOrderDetailVM>? OrderDetails { get; set; }
     }
 }
