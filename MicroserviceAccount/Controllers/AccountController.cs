@@ -14,6 +14,7 @@ namespace MicroserviceAccount.Controllers
     {
         private readonly IAccountRepository _repo;
         private readonly ICurrentUserService _currentUserService;
+
         public AccountController(IAccountRepository repo, ICurrentUserService currentUserService)
         {
             _repo = repo;
@@ -66,16 +67,12 @@ namespace MicroserviceAccount.Controllers
             return Ok(result);
         }
 
-     
-
-       
-
-
-
-
-
-
-
+        [HttpGet("{email}")]
+        public async Task<IActionResult> GetUserByEmail(String email)
+        {
+            var result = await _repo.GetUserByEmail(email);
+            return Ok(result);
+        }
 
         [HttpGet("bookt")]
         public async Task<IActionResult> BookAcc()
@@ -87,6 +84,7 @@ namespace MicroserviceAccount.Controllers
             var Output = response.Content;
             return Ok(Output);
         }
+
         [Authorize(AuthenticationSchemes = "Bearer")]
         [HttpPost("review")]
         public async Task<IActionResult> CreateReview([FromForm] AddReviewDTO model)
@@ -109,7 +107,6 @@ namespace MicroserviceAccount.Controllers
             var Output = response.Content;
             return Ok(Output);
         }
-
 
         [HttpPost("administrator/user")]
         [Authorize(Roles = "Administrator", AuthenticationSchemes = "Bearer")]
