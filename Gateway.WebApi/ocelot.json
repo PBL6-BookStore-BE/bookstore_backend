@@ -64,19 +64,6 @@
       "UpstreamHttpMethod": [ "POST" ]
     },
 
-    {
-      "DownstreamPathTemplate": "/api/account/{email}",
-      "DownstreamScheme": "https",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 6001
-        }
-      ],
-      "UpstreamPathTemplate": "/gateway/user/{email}",
-      "UpstreamHttpMethod": [ "GET" ]
-    },
-
     //Gateway cho book
     {
       "DownstreamPathTemplate": "/api/book",
@@ -214,18 +201,7 @@
       "UpstreamPathTemplate": "/gateway/author/{id}",
       "UpstreamHttpMethod": [ "GET", "DELETE", "PUT" ]
     },
-    {
-      "DownstreamPathTemplate": "/api/author/search",
-      "DownstreamScheme": "https",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 6002
-        }
-      ],
-      "UpstreamPathTemplate": "/gateway/searchauthor",
-      "UpstreamHttpMethod": [ "GET" ]
-    },
+
 
 
     //Gateway cho category
@@ -358,6 +334,58 @@
       ],
       "UpstreamPathTemplate": "/gateway/searchbookbyname",
       "UpstreamHttpMethod": [ "GET" ]
+    },
+    // Gateway cho payment
+    {
+      "DownstreamPathTemplate": "/api/payment",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 6003
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/payment",
+      "UpstreamHttpMethod": [ "GET", "POST" ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/payment/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 6003
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/payment/{id}",
+      "UpstreamHttpMethod": [ "GET", "DELETE", "PUT" ]
+    },
+
+    // Gateway cho order
+    {
+      "DownstreamPathTemplate": "/api/order",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 6003
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/order",
+      "UpstreamHttpMethod": [ "GET", "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/order/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 6003
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/order/{id}",
+      "UpstreamHttpMethod": [ "GET", "DELETE", "PUT" ]
     }
 
   ]

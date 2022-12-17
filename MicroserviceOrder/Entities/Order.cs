@@ -19,6 +19,8 @@ namespace PBL6.BookStore.Models.Entities.Order
         public int IdPayment { get; set; }
         //public virtual User? User {get;set;}
         public string? OrderAddress { get; set; }
+        public string? ReceiverName { get; set; }
+        public string? Number { get; set; }
         public virtual Payment? Payment { get; set; }
     }
 }
