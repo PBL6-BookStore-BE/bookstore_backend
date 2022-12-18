@@ -6,8 +6,11 @@ using MicroserviceOrder.Interfaces;
 using MicroserviceOrder.Services;
 using MicroserviceOrder.ViewModels.OrderDetailVM;
 using MicroserviceOrder.ViewModels.OrderVM;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PBL6.BookStore.Models.Entities.Order;
+using System;
+using System.Globalization;
 
 namespace MicroserviceOrder.Repositories
 {
@@ -125,6 +128,113 @@ namespace MicroserviceOrder.Repositories
             order.Status = status;
             await _context.SaveChangesAsync();
             return order.Status;
+        }
+
+        public async Task<IEnumerable<GetOrderVM>> GetOrdersByUser(int id)
+        {
+            var orders = await _context.Orders.Where(b => b.IsDeleted == false).Where(b=>b.Id==id).Include(b => b.Payment).ToListAsync();
+            var results = orders.Select(i => _mapper.Map<GetOrderVM>(i));
+            return results;
+        }
+
+        public async Task<IEnumerable<TotalSalesVM>> GetMonthlySales(DateTime startDate, DateTime endDate)
+        {
+            List<TotalSalesVM> monthlySalesList = new List<TotalSalesVM>();
+            int count = 0;
+            DateTime temp = startDate;
+            while (temp <= endDate)
+            {
+                var orders = await _context.Orders.Where(
+                            c => c.CreatedDate.Year == temp.Year
+                            && c.CreatedDate.Month == temp.Month).Where(b => b.IsDeleted == false).ToListAsync();
+                double monthlyTotal = 0;
+                foreach (var order in orders)
+                {
+                    monthlyTotal += float.Parse(order.Total, CultureInfo.InvariantCulture.NumberFormat);
+                }
+                TotalSalesVM model = new TotalSalesVM();
+                model.Time = temp.Month + "/" + temp.Year;
+                model.Sales = monthlyTotal;
+                monthlySalesList.Add(model);
+                count++;
+                temp = temp.AddMonths(1);
+
+            }
+            return monthlySalesList;
+        }
+        public async Task<IEnumerable<TotalSalesVM>> GetDailySales(DateTime startDate, DateTime endDate)
+        {
+            List<TotalSalesVM> dailySalesList = new List<TotalSalesVM>();
+            int count = 0;
+            DateTime temp = startDate;
+            while (temp <= endDate)
+            {
+                var orders = await _context.Orders.Where(
+                            c => c.CreatedDate.Date == temp).Where(b => b.IsDeleted == false).ToListAsync();
+                double dailyTotal = 0;
+                foreach (var order in orders)
+                {
+                    dailyTotal += float.Parse(order.Total, CultureInfo.InvariantCulture.NumberFormat);
+                }
+                TotalSalesVM model = new TotalSalesVM();
+                model.Time = temp.Date.ToString();
+                model.Sales = dailyTotal;
+                dailySalesList.Add(model);
+                count++;
+                temp = temp.AddDays(1);
+
+            }
+            return dailySalesList;
+        }
+        public async Task<IEnumerable<TotalSalesVM>> GetYearlySales(DateTime startDate, DateTime endDate)
+        {
+            List<TotalSalesVM> yearlySalesList = new List<TotalSalesVM>();
+            int count = 0;
+            DateTime temp = startDate;
+            while (temp <= endDate)
+            {
+                var orders = await _context.Orders.Where(
+                            c => c.CreatedDate.Year== temp.Year).Where(b => b.IsDeleted == false).ToListAsync();
+                double yearlyTotal = 0;
+                foreach (var order in orders)
+                {
+                    yearlyTotal += float.Parse(order.Total, CultureInfo.InvariantCulture.NumberFormat);
+                }
+                TotalSalesVM model = new TotalSalesVM();
+                model.Time = temp.Year.ToString();
+                model.Sales = yearlyTotal;
+                yearlySalesList.Add(model);
+                count++;
+                temp = temp.AddYears(1);
+
+            }
+            return yearlySalesList;
+        }
+        public async Task<IEnumerable<TotalSalesVM>> GetWeeklySales(DateTime startDate, DateTime endDate)
+        {
+            List<TotalSalesVM> weeklySalesList = new List<TotalSalesVM>();
+            int count = 0;
+            DateTime temp = startDate;
+            while (temp <= endDate)
+            {
+                count++;
+                var orders = await _context.Orders.Where(
+                            c => c.CreatedDate.Date >= temp.Date && c.CreatedDate.Date < temp.AddDays(7).Date)
+                            .Where(b => b.IsDeleted == false).ToListAsync();
+                double weeklyTotal = 0;
+                foreach (var order in orders)
+                {
+                    weeklyTotal += float.Parse(order.Total, CultureInfo.InvariantCulture.NumberFormat);
+                }
+                TotalSalesVM model = new TotalSalesVM();
+                model.Time = "Week "+ count;
+                model.Sales = weeklyTotal;
+                weeklySalesList.Add(model);
+                
+                temp = temp.AddDays(7);
+
+            }
+            return weeklySalesList;
         }
     }
 }
