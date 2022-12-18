@@ -25,14 +25,6 @@ namespace MicroserviceAccount.Controllers
         public async Task<ActionResult> RegisterAsync(RegisterDTO model)
         {
             var result = await _repo.RegisterAsync(model);
-            //var IdUser = _currentUserService.Id;
-            //var url = "https://localhost:7075/gateway/carts";
-            //var client = new RestClient(url);
-            //var request = new RestRequest(url, Method.Post);
-            //request.RequestFormat = DataFormat.Json;
-            ////request.AddBody(IdUser);
-            //RestResponse response = await client.ExecuteAsync(request);
-            //var Output = response.Content;
             return Ok(result);
         }
 
@@ -58,7 +50,6 @@ namespace MicroserviceAccount.Controllers
         }
 
         [HttpPost("change-password")]
-        [Authorize(Roles = "Administrator,Customer", AuthenticationSchemes = "Bearer")]
         [Authorize(AuthenticationSchemes = "Bearer")]
         public async Task<IActionResult> ChangePassword(ChangePasswordDTO model)
         {
@@ -72,17 +63,6 @@ namespace MicroserviceAccount.Controllers
         {
             var result = await _repo.GetUserByEmail(email);
             return Ok(result);
-        }
-
-        [HttpGet("bookt")]
-        public async Task<IActionResult> BookAcc()
-        {
-            var url = "https://localhost:7075/gateway/book";
-            var client = new RestClient(url);
-            var request = new RestRequest(url, Method.Get);
-            RestResponse response = await client.ExecuteAsync(request);
-            var Output = response.Content;
-            return Ok(Output);
         }
 
         [Authorize(AuthenticationSchemes = "Bearer")]
@@ -108,7 +88,7 @@ namespace MicroserviceAccount.Controllers
             return Ok(Output);
         }
 
-        [HttpPost("administrator/user")]
+        [HttpPost]
         [Authorize(Roles = "Administrator", AuthenticationSchemes = "Bearer")]
         public async Task<IActionResult> CreateUser(CreateUserDTO model)
         {
@@ -116,11 +96,43 @@ namespace MicroserviceAccount.Controllers
             return Ok(result);
         }
 
-        [HttpGet("administrator/user")]
+        [HttpGet("customers")]
         [Authorize(Roles = "Administrator", AuthenticationSchemes = "Bearer")]
-        public async Task<IActionResult> GetAllCustomers()
+        public async Task<IActionResult> GetListCustomers(string? email, string? phone)
         {
-            var result = await _repo.GetAllUsers();
+            var result = await _repo.GetListCustomers(email, phone);
+            return Ok(result);
+        }
+
+        [HttpGet("admins")]
+        [Authorize(Roles = "Administrator", AuthenticationSchemes = "Bearer")]
+        public async Task<IActionResult> GetListAdmins(string? email, string? phone)
+        {
+            var result = await _repo.GetListAdmins(email, phone);
+            return Ok(result);
+        }
+
+        [HttpPut("user")]
+        [Authorize(Roles = "Administrator", AuthenticationSchemes = "Bearer")]
+        public async Task<IActionResult> UpdateStateUser(string id, bool state)
+        {
+            var result = await _repo.UpdateStateUser(id, state);
+            return Ok(result);
+        }
+
+        [HttpPut]
+        [Authorize(AuthenticationSchemes = "Bearer")]
+        public async Task<IActionResult> UpdateUser(UpdateUserDTO model)
+        {
+            var id = _currentUserService.Id;
+            var result = await _repo.UpdateUser(id, model);
+            return Ok(result);
+        }
+
+        [HttpGet("total-customer-account")]
+        public async Task<IActionResult> GetTotalAccount()
+        {
+            var result = await _repo.GetTotalAccount();
             return Ok(result);
         }
     }
