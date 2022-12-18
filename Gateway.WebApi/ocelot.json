@@ -63,6 +63,97 @@
       "UpstreamPathTemplate": "/gateway/reset-password",
       "UpstreamHttpMethod": [ "POST" ]
     },
+    //get user detail by email
+    {
+      "DownstreamPathTemplate": "/api/account/{email}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 6001
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/user/{email}",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    //admin create admin account
+    {
+      "DownstreamPathTemplate": "/api/account",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 6001
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/dashboard",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    //admin get list customers
+    {
+      "DownstreamPathTemplate": "/api/account/customers",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 6001
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/dashboard/customers",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    //admin get list admins
+    {
+      "DownstreamPathTemplate": "/api/account/admins",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 6001
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/dashboard/admins",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    //admin update state user
+    {
+      "DownstreamPathTemplate": "/api/account/user",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 6001
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/dashboard/user",
+      "UpstreamHttpMethod": [ "PUT" ]
+    },
+    //update user information
+    {
+      "DownstreamPathTemplate": "/api/account",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 6001
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/user",
+      "UpstreamHttpMethod": [ "PUT" ]
+    },
+    //get total customer account
+    {
+      "DownstreamPathTemplate": "/api/account/total-customer-account",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 6001
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/total-customer-account",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
 
     //Gateway cho book
     {
@@ -104,8 +195,6 @@
       "UpstreamPathTemplate": "/gateway/topbook",
       "UpstreamHttpMethod": [ "GET" ]
     },
-
-
 
     //Gateway cho review
     {
@@ -213,7 +302,6 @@
       "UpstreamPathTemplate": "/gateway/searchauthor",
       "UpstreamHttpMethod": [ "GET" ]
     },
-
 
     //Gateway cho category
 

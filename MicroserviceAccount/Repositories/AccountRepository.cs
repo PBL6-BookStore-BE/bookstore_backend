@@ -223,14 +223,16 @@ namespace MicroserviceAccount.Repositories
                 Email = model.Email,
                 FullName = model.FullName,
                 Address = model.Address,
+                PhoneNumber = model.Phone,
                 CreatedOn = DateTime.Now.Date,
                 EmailConfirmed = true,
-                PhoneNumber = model.Phone
+                IsActive = true,
+                PhoneNumberConfirmed = true,
             };
             var userWithSameEmail = await _userManager.FindByEmailAsync(model.Email);
             if (userWithSameEmail == null)
             {
-                var result = await _userManager.CreateAsync(user, model.Password);
+                var result = await _userManager.CreateAsync(user, UserConstants.DefaultPassword);
                 if (result.Succeeded)
                 {
                     await _userManager.AddToRoleAsync(user, RoleConstants.AdministratorRole.ToString());
@@ -249,20 +251,45 @@ namespace MicroserviceAccount.Repositories
             };
         }
 
-        public async Task<IEnumerable<GetAllUsersVM>> GetAllUsers()
+        public async Task<IEnumerable<GetListCustomersVM>> GetListCustomers(string? email, string? phone)
         {
             var list = await (from c in _context.Users
-                              select new GetAllUsersVM
+                              where c.PhoneNumberConfirmed == false
+                              && (string.IsNullOrEmpty(email) || c.Email.ToLower().Contains(email!))
+                              && (string.IsNullOrEmpty(phone) || c.PhoneNumber.ToLower().Contains(phone!))
+                              select new GetListCustomersVM
                               {
+                                  Id = c.Id,
+                                  Username = c.UserName,
                                   FullName = c.FullName,
                                   Email = c.Email,
                                   Address = c.Address,
                                   PhoneNumber = c.PhoneNumber,
-                                  CreatedOn = c.CreatedOn
+                                  CreatdOn = c.CreatedOn,
+                                  IsActive = c.IsActive,
                               }).ToListAsync();
             return list.AsReadOnly();
         }
 
+        public async Task<IEnumerable<GetListAdminsVM>> GetListAdmins(string? email, string? phone)
+        {
+            var list = await (from c in _context.Users
+                              where c.PhoneNumberConfirmed == true
+                              && (string.IsNullOrEmpty(email) || c.Email.ToLower().Contains(email!))
+                              && (string.IsNullOrEmpty(phone) || c.PhoneNumber.ToLower().Contains(phone!))
+                              select new GetListAdminsVM
+                              {
+                                  Id = c.Id,
+                                  Username = c.UserName,
+                                  FullName = c.FullName,
+                                  Email = c.Email,
+                                  Address = c.Address,
+                                  PhoneNumber = c.PhoneNumber,
+                                  CreatedOn = c.CreatedOn,
+                                  IsActive = c.IsActive,
+                              }).ToListAsync();
+            return list.AsReadOnly();
+        }
 
         public async Task<GetUserVM> GetUserByEmail(string email)
         {
@@ -270,12 +297,49 @@ namespace MicroserviceAccount.Repositories
                               where u.Email == email
                               select new GetUserVM
                               {
+                                  Id = u.Id,
                                   FullName = u.FullName,
                                   Email = u.Email,
                                   Address = u.Address,
                                   PhoneNumber = u.PhoneNumber,
                               }).FirstOrDefaultAsync();
             return user;
+        }
+
+        public async Task<AuthenticationVM> UpdateStateUser(string id, bool state)
+        {
+            var user = await _userManager.FindByIdAsync(id);
+            user.IsActive = state;
+            await _context.SaveChangesAsync();
+            var msg = (state == true) ? "Activated" : "Disabled";
+            return new AuthenticationVM
+            {
+                Message = $"{msg} successfully user {user.UserName}",
+                IsSuccess = true
+            };
+        }
+
+        public async Task<AuthenticationVM> UpdateUser(string id, UpdateUserDTO model)
+        {
+            var user = await _userManager.FindByIdAsync(id);
+            user.PhoneNumber = model.Phone;
+            user.UserName = model.Username;
+            user.Address = model.Address;
+            user.FullName = model.FullName;
+            await _context.SaveChangesAsync();
+            return new AuthenticationVM
+            {
+                Message = $"Updated information successfully user {user.Email}",
+                IsSuccess = true
+            };
+        }
+
+        public async Task<int> GetTotalAccount()
+        {
+            var total = (from c in _context.Users
+                         where !c.PhoneNumberConfirmed
+                         select c).Count();
+            return total;
         }
     }
 }
