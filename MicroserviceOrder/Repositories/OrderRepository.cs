@@ -170,7 +170,7 @@ namespace MicroserviceOrder.Repositories
             while (temp <= endDate)
             {
                 var orders = await _context.Orders.Where(
-                            c => c.CreatedDate.Date == temp).Where(b => b.IsDeleted == false).ToListAsync();
+                            c => c.CreatedDate.Date == temp.Date).Where(b => b.IsDeleted == false).ToListAsync();
                 double dailyTotal = 0;
                 foreach (var order in orders)
                 {
@@ -235,6 +235,29 @@ namespace MicroserviceOrder.Repositories
 
             }
             return weeklySalesList;
+        }
+        public async Task<int> GetTotalOrdersDaily(DateTime date)
+        {
+            int total = await _context.Orders.Where(c => c.CreatedDate.Date == date.Date).Where(b => b.IsDeleted == false).CountAsync();
+            return total;
+        }
+        public async Task<int> GetTotalPendingOrders()
+        {
+            int total = await _context.Orders.Where(c => c.Status == false).Where(b => b.IsDeleted == false).CountAsync();
+            return total;
+        }
+
+        public async Task<double> DailyPaypalIncome(DateTime date)
+        {
+            var income = await _context.Orders.Where(c => c.CreatedDate == date.Date)
+                .Where(c => c.IdPayment == 2).Where(b => b.IsDeleted == false).Select(c => c.Total).ToListAsync();
+            double sum = 0;
+            foreach(var i in income)
+            {
+                double temp = Convert.ToDouble(i);
+                sum += temp;
+            }
+            return sum;
         }
     }
 }

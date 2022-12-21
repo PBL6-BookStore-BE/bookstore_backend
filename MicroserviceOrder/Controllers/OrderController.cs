@@ -82,6 +82,23 @@ namespace MicroserviceOrder.Controllers
         {
             return Ok(await _repository.GetWeeklySales(model.StartTime, model.EndTime));
         }
-
+        [Authorize(AuthenticationSchemes ="Bearer", Roles ="Administrator")]
+        [HttpGet("daily-total-orders")]
+        public async Task<IActionResult> GetTotalOrdersDaily(DateTime date)
+        {
+            return Ok(await _repository.GetTotalOrdersDaily(date));
+        }
+        [Authorize(AuthenticationSchemes = "Bearer", Roles = "Administrator")]
+        [HttpGet("pending-orders")]
+        public async Task<IActionResult> GetPendingOrders()
+        {
+            return Ok(await _repository.GetTotalPendingOrders());
+        }
+        [Authorize(AuthenticationSchemes = "Bearer", Roles = "Administrator")]
+        [HttpGet("daily-paypal-income")]
+        public async Task<IActionResult> GetDailyPaypalIncome(DateTime date)
+        {
+            return Ok(await _repository.DailyPaypalIncome(date));
+        }
     }
 }

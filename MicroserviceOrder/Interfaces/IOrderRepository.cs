@@ -18,6 +18,9 @@ namespace MicroserviceOrder.Interfaces
         public Task<IEnumerable<TotalSalesVM>> GetMonthlySales(DateTime startDate, DateTime endDate);
         public Task<IEnumerable<TotalSalesVM>> GetWeeklySales(DateTime startDate, DateTime endDate);
         public Task<IEnumerable<TotalSalesVM>> GetDailySales(DateTime startDate, DateTime endDate);
+        public Task<int> GetTotalOrdersDaily(DateTime date);
+        public Task<int> GetTotalPendingOrders();
+        public Task<double> DailyPaypalIncome(DateTime date);
 
     }
 }
