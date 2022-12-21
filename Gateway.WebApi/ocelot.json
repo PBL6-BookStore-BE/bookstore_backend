@@ -485,6 +485,42 @@
       ],
       "UpstreamPathTemplate": "/gateway/order/{id}",
       "UpstreamHttpMethod": [ "GET", "DELETE", "PUT" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/order/daily-total-orders",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 6003
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/order/daily-total-orders",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/order/pending-orders",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 6003
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/order/pending-orders",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/order/daily-paypal-income",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 6003
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/order/daily-paypal-income",
+      "UpstreamHttpMethod": [ "GET" ]
     }
 
   ]
