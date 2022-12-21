@@ -521,6 +521,54 @@
       ],
       "UpstreamPathTemplate": "/gateway/order/daily-paypal-income",
       "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/order/getDailySales",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 6003
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/order/getDailySales",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/order/getYearlySales",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 6003
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/order/getYearlySales",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/order/getMonthlySales",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 6003
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/order/getMonthlySales",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/order/changeStatus",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 6003
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/order/changeStatus",
+      "UpstreamHttpMethod": [ "POST" ]
     }
 
   ]
