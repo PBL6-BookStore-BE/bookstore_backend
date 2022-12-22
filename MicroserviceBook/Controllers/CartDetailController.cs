@@ -49,6 +49,16 @@ namespace MicroserviceBook.Controllers
         {
             return Ok(await _repo.ChangeQuantity(model));
         }
+        
+        [Authorize(AuthenticationSchemes = "Bearer")]
+        [HttpPut("byid")]
+        public async Task<IActionResult> ChangeQuantityById(CartDetailDTO model)
+        {
+            var res = (await _repo.ChangeQuantity(model));
+            if (res == 0) return BadRequest();
+            return Ok(res);
+        }
+
         [Authorize(AuthenticationSchemes = "Bearer")]
         [HttpDelete("all")]
         public async Task<IActionResult> DeleteCart()
