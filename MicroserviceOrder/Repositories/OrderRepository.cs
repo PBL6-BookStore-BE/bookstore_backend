@@ -85,7 +85,7 @@ namespace MicroserviceOrder.Repositories
 
         public async Task<GetOrderVM> GetOrder(int id)
         {
-            var order = await _context.Orders.FirstOrDefaultAsync(c => c.Id == id);
+            var order = await _context.Orders.Where(b => b.IsDeleted == false).Include(b => b.Payment).FirstOrDefaultAsync(c => c.Id == id);
             var result = order == null ? null : _mapper.Map<GetOrderVM>(order);
             result.OrderDetails = await _orderDetailRepository.GetOrderDetailByOrderIdAsync(id);
             return result;
