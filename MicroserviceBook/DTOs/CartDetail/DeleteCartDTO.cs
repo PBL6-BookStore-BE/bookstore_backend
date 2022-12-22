@@ -2,6 +2,6 @@
 {
     public class DeleteCartDTO
     {
-        public int  IdBook { get; set; }
+        public int  Id { get; set; }
     }
 }
