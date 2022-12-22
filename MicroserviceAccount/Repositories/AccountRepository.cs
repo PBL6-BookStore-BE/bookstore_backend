@@ -43,6 +43,12 @@ namespace MicroserviceAccount.Repositories
                 authenticationModel.Message = $"No Accounts Registered with {model.Email}.";
                 return authenticationModel;
             }
+            if (!user.IsActive)
+            {
+                authenticationModel.IsAuthenticated = false;
+                authenticationModel.Message = $"Account with {model.Email} is disabled";
+                return authenticationModel;
+            }
             if (await _userManager.CheckPasswordAsync(user, model.Password))
             {
                 authenticationModel.Message = "Login successfully";
