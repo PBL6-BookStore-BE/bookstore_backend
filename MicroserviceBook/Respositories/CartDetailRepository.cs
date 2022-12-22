@@ -91,7 +91,7 @@ namespace MicroserviceBook.Respositories
             var id_cart = await _context.Carts.Where(c => c.IdUser == id_user).Select(c => c.Id).FirstOrDefaultAsync();
             if (id_cart!= 0)
             {
-                var item = await _context.CartDetails.Where(i => (i.IdCart == id_cart) && (i.IdBook == model.IdBook) && (i.IsDeleted == false)).FirstOrDefaultAsync();
+                var item = await _context.CartDetails.Where(i => (i.IdCart == id_cart) && (i.IdBook == model.Id) && (i.IsDeleted == false)).FirstOrDefaultAsync();
                 if (item == null)
                 {
                     return default;
@@ -162,6 +162,17 @@ namespace MicroserviceBook.Respositories
             return id_cart;
         }
 
+        public async Task<int> DeleteCartDetailsById(int id)
+        {
+            var item = await _context.CartDetails.Where(i => (i.Id == id) && (i.IsDeleted == false)).FirstOrDefaultAsync();
+            if (item == null) return default;
 
+            item.IsDeleted = true;
+            item.DeletedDate = DateTime.Now;
+            await _context.SaveChangesAsync();
+            return item.Id;
+
+
+        }
     }
 }

@@ -56,5 +56,14 @@ namespace MicroserviceBook.Controllers
             return Ok(await _repo.DeleteAllAsync());
         }
 
+        [Authorize(AuthenticationSchemes = "Bearer")]
+        [HttpDelete("byid")]
+        public async Task<IActionResult> DeleteCartItemById(DeleteCartDTO model)
+        {
+            var res = await _repo.DeleteCartDetailsById(model.Id);
+            if (res == 0) return BadRequest();
+            return Ok(res);
+        }
+
     }
 }
