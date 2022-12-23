@@ -177,7 +177,7 @@ namespace MicroserviceBook.Respositories
 
         public async Task<int> ChangeQuantityForMobile(CartDetailDTO model)
         {
-            var item = await _context.CartDetails.Where(i => (i.IdBook == model.IdBook) && (i.IsDeleted == false)).FirstOrDefaultAsync();
+            var item = await _context.CartDetails.Where(i => (i.Id == model.IdBook) && (i.IsDeleted == false)).FirstOrDefaultAsync();
             if (item == null) return default;
 
             item.Quantity = model.Quantity;

@@ -54,7 +54,7 @@ namespace MicroserviceBook.Controllers
         [HttpPut("byid")]
         public async Task<IActionResult> ChangeQuantityById(CartDetailDTO model)
         {
-            var res = (await _repo.ChangeQuantity(model));
+            var res = (await _repo.ChangeQuantityForMobile(model));
             if (res == 0) return BadRequest();
             return Ok(res);
         }
