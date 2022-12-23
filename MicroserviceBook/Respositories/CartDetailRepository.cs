@@ -35,7 +35,7 @@ namespace MicroserviceBook.Respositories
             var id_cart = await _context.Carts.Where(c => c.IdUser == id_user).Select(c => c.Id).FirstOrDefaultAsync();
             if (id_cart!= null)
             {
-                var item = await _context.CartDetails.Where(i => (i.IdCart == id_cart) && (i.IdBook == model.Id) && (i.IsDeleted == false)).FirstOrDefaultAsync();
+                var item = await _context.CartDetails.Where(i => (i.IdCart == id_cart) && (i.IdBook == model.IdBook) && (i.IsDeleted == false)).FirstOrDefaultAsync();
                 if (item == null)
                 {
                     return default;
@@ -63,7 +63,7 @@ namespace MicroserviceBook.Respositories
                 id_cart = await _cartRepository.CreateCart();
 
             }
-                var item = await _context.CartDetails.Where(i => (i.IdCart == id_cart) && (i.IdBook == model.Id) && (i.IsDeleted == false)).FirstOrDefaultAsync();
+                var item = await _context.CartDetails.Where(i => (i.IdCart == id_cart) && (i.IdBook == model.IdBook) && (i.IsDeleted == false)).FirstOrDefaultAsync();
                 if (item == null)
                 {
                     var cart = _mapper.Map<CartDetail>(model);
@@ -177,7 +177,7 @@ namespace MicroserviceBook.Respositories
 
         public async Task<int> ChangeQuantityForMobile(CartDetailDTO model)
         {
-            var item = await _context.CartDetails.Where(i => (i.Id == model.Id) && (i.IsDeleted == false)).FirstOrDefaultAsync();
+            var item = await _context.CartDetails.Where(i => (i.IdBook == model.IdBook) && (i.IsDeleted == false)).FirstOrDefaultAsync();
             if (item == null) return default;
 
             item.Quantity = model.Quantity;
