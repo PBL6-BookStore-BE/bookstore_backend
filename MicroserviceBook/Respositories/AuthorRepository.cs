@@ -28,8 +28,6 @@ namespace MicroserviceBook.Respositories
         //[Authorize(Roles = "Administrator", AuthenticationSchemes = "Bearer")]
         public async Task<int> CreateAuthor(CreateAuthorDTO model)
         {
-            model.Description = model.Description ?? throw new ArgumentNullException(nameof(model));
-            model.Name = model.Name ?? throw new ArgumentNullException(nameof(model));
             var AuthorEntity = _mapper.Map<Author>(model);
             _context.Authors.Add(AuthorEntity);
             await _context.SaveChangesAsync();
