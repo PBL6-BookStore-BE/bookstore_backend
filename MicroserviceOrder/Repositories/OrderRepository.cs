@@ -130,9 +130,9 @@ namespace MicroserviceOrder.Repositories
             return order.Status;
         }
 
-        public async Task<IEnumerable<GetOrderVM>> GetOrdersByUser(int id)
+        public async Task<IEnumerable<GetOrderVM>> GetOrdersByUser(string? id)
         {
-            var orders = await _context.Orders.Where(b => b.IsDeleted == false).Where(b=>b.Id==id).Include(b => b.Payment).ToListAsync();
+            var orders = await _context.Orders.Where(b => b.IsDeleted == false).Where(b=>b.IdUser==id).Include(b => b.Payment).ToListAsync();
             var results = orders.Select(i => _mapper.Map<GetOrderVM>(i));
             return results;
         }
