@@ -54,7 +54,7 @@ namespace MicroserviceOrder.Controllers
         }
         [Authorize(AuthenticationSchemes = "Bearer")]
         [HttpGet("getOrdersByUser")]
-        public async Task<IActionResult> GetOrdersByUser(int id)
+        public async Task<IActionResult> GetOrdersByUser(string? id)
         {
             return Ok(await _repository.GetOrdersByUser(id));
         }
