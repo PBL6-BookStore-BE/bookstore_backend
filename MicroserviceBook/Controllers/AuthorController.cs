@@ -31,9 +31,9 @@ namespace MicroserviceBook.Controllers
         }
         [Authorize(Roles = "Administrator", AuthenticationSchemes = "Bearer")]
         [HttpPost]
-        public async Task<IActionResult> CreateAuthor([FromForm] CreateAuthorDTO? model)
+        public async Task<IActionResult> CreateAuthor(CreateAuthorDTO model)
         {
-            model = model ?? throw new ArgumentNullException(nameof(model));
+           
             return Ok(await _repo.CreateAuthor(model));
         }
         [Authorize(Roles = "Administrator", AuthenticationSchemes = "Bearer")]
