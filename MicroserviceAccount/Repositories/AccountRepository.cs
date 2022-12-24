@@ -305,6 +305,7 @@ namespace MicroserviceAccount.Repositories
                               {
                                   Id = u.Id,
                                   FullName = u.FullName,
+                                  UserName=u.UserName,
                                   Email = u.Email,
                                   Address = u.Address,
                                   PhoneNumber = u.PhoneNumber,
