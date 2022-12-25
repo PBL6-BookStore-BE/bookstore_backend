@@ -52,6 +52,7 @@ namespace MicroserviceAccount.Repositories
             if (await _userManager.CheckPasswordAsync(user, model.Password))
             {
                 authenticationModel.Message = "Login successfully";
+                authenticationModel.Id = user.Id;
                 authenticationModel.IsSuccess = true;
                 authenticationModel.IsAuthenticated = true;
                 JwtSecurityToken jwtSecurityToken = await CreateJwtToken(user);
