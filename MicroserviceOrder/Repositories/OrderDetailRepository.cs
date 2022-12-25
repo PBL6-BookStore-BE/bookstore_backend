@@ -51,7 +51,7 @@ namespace MicroserviceOrder.Repositories
 
         public async Task<GetOrderDetailVM> GetOrderDetail(int id)
         {
-            var orderdetail = await _context.OrderDetails.Where(i => i.Id == id).FirstOrDefaultAsync();
+            var orderdetail = await _context.OrderDetails.Where(i => i.Id == id).Where(i => i.IsDeleted == false).FirstOrDefaultAsync();
             if (orderdetail == null)
                 return null;
             var result = _mapper.Map<GetOrderDetailVM>(orderdetail);
@@ -60,7 +60,7 @@ namespace MicroserviceOrder.Repositories
 
         public async Task<IEnumerable<GetOrderDetailVM>> GetOrderDetailByOrderIdAsync(int id)
         {
-            var orderdetails = await _context.OrderDetails.Where(i => i.IdOrder == id).ToListAsync();
+            var orderdetails = await _context.OrderDetails.Where(i => i.IdOrder == id).Where(i=>i.IsDeleted==false).ToListAsync();
             if (orderdetails == null)
             {
                 return null;
