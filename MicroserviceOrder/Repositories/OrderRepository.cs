@@ -134,7 +134,14 @@ namespace MicroserviceOrder.Repositories
         {
             var orders = await _context.Orders.Where(b => b.IsDeleted == false).Where(b=>b.IdUser==id).Include(b => b.Payment).ToListAsync();
             var results = orders.Select(i => _mapper.Map<GetOrderVM>(i));
-            return results;
+            List<GetOrderVM> res = new List<GetOrderVM>();
+            foreach (var order in orders)
+            {
+                var temp = order == null ? null : _mapper.Map<GetOrderVM>(order);
+                temp.OrderDetails = await _orderDetailRepository.GetOrderDetailByOrderIdAsync(order.Id);
+                res.Add(temp);
+            }
+            return res;
         }
 
         public async Task<IEnumerable<TotalSalesVM>> GetMonthlySales(DateTime startDate, DateTime endDate)
