@@ -21,6 +21,7 @@ namespace MicroserviceAccount.Services
 
         public async Task<bool> ForgetPasswordSendMail(string toEmail, string username, string resetToken)
         {
+            resetToken = "http://localhost:3000/reset-password/" + resetToken;
             await _emailSender.ForgetPasswordSendMail(toEmail, username, resetToken);
             return true;
         }
