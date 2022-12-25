@@ -116,6 +116,7 @@ namespace MicroserviceAccount.Repositories
                 return authenticationModel;
             }
             var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+            token = token.Replace(@"/", @"%2F");
             if (await _mailService.ForgetPasswordSendMail(user.Email, user.UserName, token))
             {
                 authenticationModel.Message = $"Check your email at {model.Email} to reset password";
