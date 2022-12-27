@@ -11,6 +11,6 @@ namespace MicroserviceBook.Interfaces
         public Task<int> CreateReview(CreateReviewDTO model);
         public Task<int> UpdateReview(UpdateReviewDTO model);
         public Task<int> DeleteReview(int id);
-
+        public Task<IEnumerable<GetReviewByBookId>> GetReviewsByIdBookAsync(int idBook);
     }
 }

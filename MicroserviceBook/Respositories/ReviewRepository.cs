@@ -112,6 +112,18 @@ namespace MicroserviceBook.Respositories
             }
         }
 
-   
+        public async Task<IEnumerable<GetReviewByBookId>> GetReviewsByIdBookAsync(int IdBook)
+        {
+            var IdUser = _service.Id;
+            var reviews = await _context.Reviews.Where(r => r.IsDeleted == false && r.IdBook == IdBook).ToListAsync();
+            var reviewVM = new List<GetReviewByBookId>();
+            foreach (var i in reviews)
+            {
+                var k = _mapper.Map<GetReviewByBookId>(i);
+                
+                reviewVM.Add(k);
+            }
+            return reviewVM;
+        }
     }
 }
