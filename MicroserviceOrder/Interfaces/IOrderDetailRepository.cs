@@ -1,5 +1,6 @@
 ﻿using MicroserviceOrder.DTOs.Order;
 using MicroserviceOrder.DTOs.OrderDetail;
+using MicroserviceOrder.ViewModels.BookVM;
 using MicroserviceOrder.ViewModels.OrderDetailVM;
 using MicroserviceOrder.ViewModels.OrderVM;
 
@@ -15,5 +16,6 @@ namespace MicroserviceOrder.Interfaces
         public Task<int> UpdateOrderDetail(UpdateOrderDetailDTO model);
         public Task<int> DeleteOrderDetail(int id);
         public Task<IEnumerable<GetOrderDetailVM>> GetOrderDetailByOrderIdAsync(int id);
+        public Task<IEnumerable<BestSellerBookVM>> GetTop10BestSellingBook();
     }
 }
