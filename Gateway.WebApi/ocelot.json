@@ -238,6 +238,19 @@
       "UpstreamHttpMethod": [ "GET", "DELETE", "PUT" ]
     },
 
+    {
+      "DownstreamPathTemplate": "/api/review/idBook/{idBook}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 6002
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/review/idBook/{idBook}",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+
     //Gateway cho cartdetail
 
     {

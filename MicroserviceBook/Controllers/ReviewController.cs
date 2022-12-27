@@ -58,5 +58,12 @@ namespace MicroserviceBook.Controllers
         {
             return Ok(await _repo.UpdateReview(model));
         }
+
+        [HttpGet("idBook/{idBook}")]
+        public async Task<IActionResult> GetReviewByBookId(int idBook)
+        {
+            return Ok(await _repo.GetReviewsByIdBookAsync(idBook));
+        }
+
     }
 }

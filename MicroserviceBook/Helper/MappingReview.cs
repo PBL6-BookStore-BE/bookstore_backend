@@ -11,6 +11,7 @@ namespace MicroserviceBook.Helper
         {
             CreateMap<Review, GetReviewVM>();
             CreateMap<CreateReviewDTO, Review>();
+            CreateMap<Review, GetReviewByBookId>().ReverseMap();
             
         }
     }
