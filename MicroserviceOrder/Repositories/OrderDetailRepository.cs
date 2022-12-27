@@ -2,6 +2,7 @@
 using MicroserviceOrder.Data;
 using MicroserviceOrder.DTOs.OrderDetail;
 using MicroserviceOrder.Interfaces;
+using MicroserviceOrder.ViewModels.BookVM;
 using MicroserviceOrder.ViewModels.OrderDetailVM;
 using Microsoft.EntityFrameworkCore;
 using PBL6.BookStore.Models.Entities.Order;
@@ -83,6 +84,15 @@ namespace MicroserviceOrder.Repositories
             orderdetail.Quantity = model.Quantity;
             await _context.SaveChangesAsync();
             return orderdetail.Id;
+        }
+        public async Task<IEnumerable<BestSellerBookVM>> GetTop10BestSellingBook()
+        {
+            var _results = await _context.OrderDetails.GroupBy(c => c.IdBook).Select(g => new BestSellerBookVM()
+            {
+                IdBook = g.Key,
+                Sales = g.Sum(x=>x.Quantity)
+            }).OrderByDescending(c=>c.Sales).Take(10).ToListAsync();
+            return _results;
         }
     }
 }

@@ -44,5 +44,10 @@ namespace MicroserviceOrder.Controllers
         {
             return Ok(await _repository.UpdateOrderDetail(model));
         }
+        [HttpGet("best-selling-books")]
+        public async Task<IActionResult> GetBestSellingBook()
+        {
+            return Ok(await _repository.GetTop10BestSellingBook());
+        }
     }
 }
