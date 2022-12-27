@@ -135,5 +135,12 @@ namespace MicroserviceAccount.Controllers
             var result = await _repo.GetTotalAccount();
             return Ok(result);
         }
+
+        [HttpGet("username/{id}")]
+        public async Task<IActionResult> GetUsernameById(string id)
+        {
+            var result = await _repo.GetUserNameById(id);
+            return Ok(result);
+        }
     }
 }

@@ -28,5 +28,7 @@ namespace MicroserviceAccount.Interfaces
         Task<GetUserVM> GetUserByEmail(String email);
 
         Task<int> GetTotalAccount();
+
+        Task<String> GetUserNameById(String id);
     }
 }
