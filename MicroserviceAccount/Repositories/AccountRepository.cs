@@ -307,7 +307,7 @@ namespace MicroserviceAccount.Repositories
                               {
                                   Id = u.Id,
                                   FullName = u.FullName,
-                                  UserName=u.UserName,
+                                  UserName = u.UserName,
                                   Email = u.Email,
                                   Address = u.Address,
                                   PhoneNumber = u.PhoneNumber,
@@ -349,6 +349,12 @@ namespace MicroserviceAccount.Repositories
                          where !c.PhoneNumberConfirmed
                          select c).Count();
             return total;
+        }
+
+        public async Task<string> GetUserNameById(string id)
+        {
+            var user = await _userManager.FindByIdAsync(id);
+            return user.UserName;
         }
     }
 }

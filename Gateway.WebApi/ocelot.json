@@ -155,6 +155,21 @@
       "UpstreamHttpMethod": [ "GET" ]
     },
 
+    //get username by id
+    {
+      "DownstreamPathTemplate": "/api/account/username/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 6001
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/username/{id}",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+
+
     //Gateway cho book
     {
       "DownstreamPathTemplate": "/api/book",
