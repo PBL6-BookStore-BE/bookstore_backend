@@ -153,7 +153,8 @@ namespace MicroserviceOrder.Repositories
             {
                 var orders = await _context.Orders.Where(
                             c => c.CreatedDate.Year == temp.Year
-                            && c.CreatedDate.Month == temp.Month).Where(b => b.IsDeleted == false).ToListAsync();
+                            && c.CreatedDate.Month == temp.Month).Where(b=>b.Status==true)
+                             .Where(b => b.IsDeleted == false).ToListAsync();
                 double monthlyTotal = 0;
                 foreach (var order in orders)
                 {
@@ -177,7 +178,9 @@ namespace MicroserviceOrder.Repositories
             while (temp <= endDate)
             {
                 var orders = await _context.Orders.Where(
-                            c => c.CreatedDate.Date == temp.Date).Where(b => b.IsDeleted == false).ToListAsync();
+                            c => c.CreatedDate.Date == temp.Date)
+                    .Where(b=>b.Status==true)
+                    .Where(b => b.IsDeleted == false).ToListAsync();
                 double dailyTotal = 0;
                 foreach (var order in orders)
                 {
@@ -201,7 +204,9 @@ namespace MicroserviceOrder.Repositories
             while (temp <= endDate)
             {
                 var orders = await _context.Orders.Where(
-                            c => c.CreatedDate.Year== temp.Year).Where(b => b.IsDeleted == false).ToListAsync();
+                            c => c.CreatedDate.Year== temp.Year)
+                    .Where(b => b.Status == true)
+                    .Where(b => b.IsDeleted == false).ToListAsync();
                 double yearlyTotal = 0;
                 foreach (var order in orders)
                 {
@@ -227,6 +232,7 @@ namespace MicroserviceOrder.Repositories
                 count++;
                 var orders = await _context.Orders.Where(
                             c => c.CreatedDate.Date >= temp.Date && c.CreatedDate.Date < temp.AddDays(7).Date)
+                            .Where(b => b.Status == true)
                             .Where(b => b.IsDeleted == false).ToListAsync();
                 double weeklyTotal = 0;
                 foreach (var order in orders)
@@ -256,8 +262,12 @@ namespace MicroserviceOrder.Repositories
 
         public async Task<double> DailyPaypalIncome(DateTime date)
         {
-            var income = await _context.Orders.Where(c => c.CreatedDate == date.Date)
-                .Where(c => c.IdPayment == 2).Where(b => b.IsDeleted == false).Select(c => c.Total).ToListAsync();
+            var income = await _context.Orders
+                .Where(c => c.CreatedDate == date.Date)
+                .Where(c => c.IdPayment == 2)
+                .Where(b => b.Status == true)
+                .Where(b => b.IsDeleted == false)
+                .Select(c => c.Total).ToListAsync();
             double sum = 0;
             foreach(var i in income)
             {
