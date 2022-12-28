@@ -637,6 +637,18 @@
       ],
       "UpstreamPathTemplate": "/gateway/orderDetail/best-selling-books",
       "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/order/getOrdersByUser",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 6003
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/order/getOrdersByUser",
+      "UpstreamHttpMethod": [ "GET" ]
     }
 
   ]
